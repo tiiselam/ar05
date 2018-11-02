@@ -1,0 +1,2 @@
+C:\DESA\TIISELAM\Instalador\GP2016\LocArgSetupCompaniaSQL\bin\Debug\LocArgSetupCompaniaSQL.msi
+C:\DESA\TIISELAM\Instalador\GP2016\LocArgSetupCompaniaSQL\bin\Debug\LocArgSetupCompaniaSQL.wixpdb
