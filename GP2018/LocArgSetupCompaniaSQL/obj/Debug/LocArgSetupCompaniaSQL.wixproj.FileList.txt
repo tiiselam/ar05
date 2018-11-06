@@ -1,0 +1,15 @@
+obj\Debug\ProductSQL.wixobj
+obj\Debug\UserRegistrationDlg.wixobj
+C:\DESA\TIISELAM\Instalador\Install Loc ARG\LocArgSetupCompaniaSQL\bin\Debug\LocArgSetupCompaniaSQL.msi
+C:\DESA\TIISELAM\Instalador\Install Loc ARG\LocArgSetupCompaniaSQL\bin\Debug\LocArgSetupCompaniaSQL.wixpdb
+obj\Debug\LocArgSetupCompaniaSQL.wixproj.BindContentsFileListnull.txt
+obj\Debug\LocArgSetupCompaniaSQL.wixproj.BindOutputsFileListnull.txt
+obj\Debug\LocArgSetupCompaniaSQL.wixproj.BindBuiltOutputsFileListnull.txt
+C:\DESA\TIISELAM\Instalador\GP2018\LocArgSetupCompaniaSQL\bin\Debug\LocArgSetupCompaniaSQL.msi
+C:\DESA\TIISELAM\Instalador\GP2018\LocArgSetupCompaniaSQL\bin\Debug\LocArgSetupCompaniaSQL.wixpdb
+C:\DESA\TIISELAM\Instalador\GP2016\LocArgSetupCompaniaSQL\bin\Debug\LocArgSetupCompaniaSQL.msi
+C:\DESA\TIISELAM\Instalador\GP2016\LocArgSetupCompaniaSQL\bin\Debug\LocArgSetupCompaniaSQL.wixpdb
+C:\Users\Admin\Documents\GitHub\ar05\GP2016\LocArgSetupCompaniaSQL\bin\Debug\LocArgSetupCompaniaSQL.msi
+C:\Users\Admin\Documents\GitHub\ar05\GP2016\LocArgSetupCompaniaSQL\bin\Debug\LocArgSetupCompaniaSQL.wixpdb
+C:\Users\Admin\Documents\GitHub\ar05\GP2018\LocArgSetupCompaniaSQL\bin\Debug\LocArgSetupCompaniaSQL.msi
+C:\Users\Admin\Documents\GitHub\ar05\GP2018\LocArgSetupCompaniaSQL\bin\Debug\LocArgSetupCompaniaSQL.wixpdb

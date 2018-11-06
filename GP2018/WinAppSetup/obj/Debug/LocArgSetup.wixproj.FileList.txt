@@ -1,0 +1,14 @@
+obj\Debug\Product.wixobj
+obj\Debug\LocArgSetup.wixproj.BindContentsFileListnull.txt
+obj\Debug\LocArgSetup.wixproj.BindOutputsFileListnull.txt
+obj\Debug\LocArgSetup.wixproj.BindBuiltOutputsFileListnull.txt
+C:\DESA\TIISELAM\Instalador\Install Loc ARG\WinAppSetup\bin\Debug\LocalizacionARG.msi
+C:\DESA\TIISELAM\Instalador\Install Loc ARG\WinAppSetup\bin\Debug\LocalizacionARG.wixpdb
+C:\DESA\TIISELAM\Instalador\GP2018\WinAppSetup\bin\Debug\LocalizacionARG.msi
+C:\DESA\TIISELAM\Instalador\GP2018\WinAppSetup\bin\Debug\LocalizacionARG.wixpdb
+C:\DESA\TIISELAM\Instalador\GP2016\WinAppSetup\bin\Debug\LocalizacionARG.msi
+C:\DESA\TIISELAM\Instalador\GP2016\WinAppSetup\bin\Debug\LocalizacionARG.wixpdb
+C:\Users\Admin\Documents\GitHub\ar05\GP2016\WinAppSetup\bin\Debug\LocalizacionARG.msi
+C:\Users\Admin\Documents\GitHub\ar05\GP2016\WinAppSetup\bin\Debug\LocalizacionARG.wixpdb
+C:\Users\Admin\Documents\GitHub\ar05\GP2018\WinAppSetup\bin\Debug\LocalizacionARG.msi
+C:\Users\Admin\Documents\GitHub\ar05\GP2018\WinAppSetup\bin\Debug\LocalizacionARG.wixpdb

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+	 xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+	
+		<Product Id="6E38CD38-3415-4FC5-9620-3879DBC6B670" Name="Localización ARG"
+           Language="1033" Version="7.2.0.0" Manufacturer="JCF" UpgradeCode="44281eba-a31e-4e51-92b8-ff8327561a96">
+		<Package Id="*" InstallerVersion="200" Manufacturer="JCF" Compressed="yes" />
+		
+		<!--Product Id="*" Name="Win App" Language="1033" Version="2.0.0.0" Manufacturer="WinApp Software Inc." UpgradeCode="a9b1d837-9b09-491b-bd81-b794560745a4">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" /-->
+
+		<!--MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." /-->
+
+		<Media Id="1" Cabinet="WinApp.cab" EmbedCab="yes" />
+		
+		<Feature Id="InstalacionCompleta" Title="GP Factura Digital" Level="1" Description="Objetos sql y archivos de programa." Display="expand" ConfigurableDirectory="INSTALLDIR">
+			<Feature Id="DYNCNKS" Title="Dynamics CNKS" Description="Archivos del programa." Level="1">
+				<Feature Id="MedioCobroPago" Title="Medios de Cobro Pago" Description="Medios de Cobro Pago" Level="1">
+					<ComponentRef Id="MedioCobroPago" />
+				</Feature>
+				<Feature Id="ListadorImpuestos"  Title="Listador de Impuestos" Description="Listador de Impuestos" Level="1">
+					<ComponentRef Id="ListadorImpuestos" />
+				</Feature>
+				<Feature Id="FacturaElectronica"  Title="Factura Electronica" Description="Factura Electrónica" Level="1">
+					<ComponentRef Id="FacturaElectronica" />
+					<ComponentRef Id="DLLFacturaElectronica" />
+					<ComponentRef Id="DLLWOW" />
+				</Feature>
+				<Feature Id="AjustesInflacion"  Title="Ajustes x Inflación" Description="Ajustes x Inflación" Level="1">
+					<ComponentRef Id="AjustesInflacion" />
+				</Feature>	
+				<Feature Id="AnalisisCrediticio"  Title="Análisis Crediticio" Description="Análisis Crediticio" Level="1">					
+					<ComponentRef Id="AnalisisCrediticio" />
+				</Feature>		
+				<Feature Id="DocumentosLegales" Title="Documentos Legales" Description="Documentos Legales" Level="1">	
+					<ComponentRef Id="DocumentosLegales" />
+				</Feature>		
+				<Feature Id="ImpresionCheques" Title="Impresión de Cheques" Description="Impresión de cheques" Level="1">	
+					<ComponentRef Id="ImpresionCheques" />
+				</Feature>				
+				<Feature Id="Percepciones" Title="Percepciones" Description="Percepciones" Level="1">							
+					<ComponentRef Id="Percepciones" />
+				</Feature>				
+				<Feature Id="NuevoCITI" Title="Nuevo CITI" Description="Nuevo CITI" Level="1">			
+					<ComponentRef Id="NuevoCITI" />
+				</Feature>				
+			
+			</Feature>
+			<Feature Id="GeneradorPDFRep" Title="Generador PDF + Reportes Custom" Description="Generador PDF + Reportes de Factura" Level="1">
+				<Feature Id="ReporteFE"  Title="Reporte RS FE" Description="Reporte de Factura Electronica(Reporting Services)" Level="1">
+					<ComponentRef Id="ReporteFE" />
+				</Feature>
+				<Feature Id="GeneradorPDF"  Title="Generador PDF" Description="Aplicativo para generar Facturas en PDF " Level="1">
+					<ComponentRef Id="EjecutableEncriptador" />
+					<ComponentRef Id="Comun" />
+					<ComponentRef Id="Parametros" />
+					<ComponentRef Id="EMailManejador" />
+					<ComponentRef Id="MaquinaDeEstados" />
+					<ComponentRef Id="Encriptador" />
+					<ComponentRef Id="Reporteador" />
+					<ComponentRef Id="QRCodeLib" />
+					<ComponentRef Id="Compresor" />
+					<ComponentRef Id="MyGeneration.dOOdads_2005" />
+					<ComponentRef Id="ProgramMenuDir"/>
+				</Feature>			
+				
+			</Feature>
+			<Feature Id="ReporteCTACTE"  Title="Reporte Cta Cte Proveedores" Description="Reporte de Cuenta Corriente para proveedores(Reporting Services)" Level="1">
+				<ComponentRef Id="ReporteCTACTE" />
+			</Feature>
+			<Feature Id="InstaladorCompania"  Title="Instalador Compañia" Description="Instalador de Componentes Base de datos para Compañias" Level="1">
+				<ComponentRef Id="InstaladorSQL" />
+			</Feature>
+		</Feature>
+
+		<!--Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" /-->
+		<!--UIRef Id="WixUI_InstallDir" /-->
+		
+		<util:User Id="SQLUser" Name="[SQLUSER]" Password="[SQLPASSWORD]"></util:User>
+		<!--Variables SQL-->
+		<Property Id="SQLUSER">sa</Property>
+		<Property Id="SQLPASSWORD">password</Property>
+		<Property Id="SQLSERVER">servidor\instancia</Property>
+		<Property Id="SQLDATABASE">bd</Property>
+
+		<UI Id="MyWixUI_Mondo">
+			<UIRef Id="WixUI_Mondo"/>
+			
+			
+			
+			<!--Pide valores para variables SQL-->
+			<!--DialogRef Id="UserRegistrationDlg"/-->
+
+			<!--Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Value="UserRegistrationDlg" Order="4">WixUI_InstallMode = "Change"</Publish-->
+			<!--Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Value="UserRegistrationDlg" Order="5">WixUI_InstallMode = "InstallCustom"</Publish-->
+			<!--Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="UserRegistrationDlg" Order="5">WixUI_InstallMode = "InstallCustom"</Publish-->
+			<!--Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="UserRegistrationDlg" Order="6">WixUI_InstallMode = "Change"</Publish-->
+		</UI>
+
+		<UIRef Id="WixUI_ErrorProgressText" />
+			
+			<!--InstallExecuteSequence-->
+			<!--Custom Action='comReg' Before='InstallFinalize'></Custom-->
+			<!--/InstallExecuteSequence-->
+
+	</Product>
+
+	<!--Fragment-->
+	<!--Binary Id="CustomActionBinary" SourceFile="$(var.MyCustomAction.TargetDir)$(var.MyCustomAction.TargetName).CA.dll"/-->
+		<!--CustomAction Id="LicenseInfoCustomAction" BinaryKey="CustomActionBinary" DllEntry="ShowLicenseInfo" Execute="immediate" Return="check"/-->
+		<!--CustomAction Id="CustomActionREG"  BinaryKey="CustomActionREG" ExeCommand="CustomActionDLL" Execute="deferred" Return="check"/-->
+		<!--CustomAction Id='comReg' Directory='DLL' Execute='deferred' Impersonate='no' ExeCommand='"[NETFRAMEWORK40CLIENTINSTALLROOTDIR]regasm.exe" " [DLL]FEEXP.dll" /codebase' Return='check' /-->
+	<!--/Fragment-->
+	
+	<Fragment>
+		<!-->Icon Id="GPFDigital.exe" SourceFile="$(sys.CURRENTDIR)mx01\Release\invoice.ico"/-->
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="DesktopFolder" Name="Desktop" >
+			</Directory>
+			<Directory Id="ProgramMenuFolder" Name="Programs">
+				<Directory Id="ProgramMenuDir" Name="GP Factura Digital v33">
+					<Component Id="ProgramMenuDir" Guid="B7342905-BA78-4c21-9C71-EAFB383674B9">
+						<RemoveFolder Id="ProgramMenuDir" On="uninstall" />
+						<RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" KeyPath="yes"/>
+					</Component>
+				</Directory>
+
+			</Directory>
+			<Directory Id="WindowsFolder" Name="Windows">
+				<Directory Id="Wow64" Name="SysWOW64">
+					<Component Id="DLLWOW" Guid="B7342905-BA78-4c21-9C71-EAFB383674B0">
+						<File Id="ACA_WSFEDLL" Source="$(sys.CURRENTDIR)ar03\Release\ACA_WSFEDLL.dll"/>
+						<RemoveFile Id="ACA_WSFEDLL" Name="ACA_WSFEDLL.dll" On="both"/>
+					</Component>
+				</Directory>
+			</Directory>
+
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLDIR" Name="Microsoft Dynamics">
+						<Component Id="MedioCobroPago" Guid="7B289C8E-6F5B-4A7B-A9A1-E78A89239714">
+							<File Id="FIMedioCobroPago" Source="$(sys.CURRENTDIR)ar03\Release\MCPRM.cnk"/>
+							<RemoveFile Id="RVMedioCobroPago" Name="MCPRM.cnk" On="both"/>
+						</Component>							
+						<Component Id="ListadorImpuestos" Guid="7B289C8E-6F5B-4A7B-A9A1-E78A89239715">
+							<File Id="FIListadorImpuestos" Source="$(sys.CURRENTDIR)ar03\Release\TaxList.cnk"/>
+							<RemoveFile Id="RVListadorImpuestos" Name="TaxList.cnk" On="both"/>
+						</Component>													
+						<Component Id="FacturaElectronica" Guid="7B289C8E-6F5B-4A7B-A9A1-E78A89239717">
+							<File Id="FacturaElectronica" Source="$(sys.CURRENTDIR)ar03\Release\FEI8421.CNK"/>
+							<RemoveFile Id="FacturaElectronica" Name="FEI8421.CNK" On="both"/>
+						</Component>							
+						<Component Id="AjustesInflacion" Guid="7B289C8E-6F5B-4A7B-A9A1-E78A89239718">
+							<File Id="AjustesInflacion" Source="$(sys.CURRENTDIR)ar03\Release\infadj.cnk"/>
+							<RemoveFile Id="RVAjustesInflacion" Name="infadj.cnk" On="uninstall"/>
+						</Component>	
+						<Component Id="AnalisisCrediticio" Guid="7B289C8E-6F5B-4A7B-A9A1-E78A89239719">
+							<File Id="AnalisisCrediticio" Source="$(sys.CURRENTDIR)ar03\Release\XAC.cnk"/>
+							<RemoveFile Id="RVAnalisisCrediticio" Name="XAC.cnk" On="uninstall"/>
+						</Component>	
+						<Component Id="DocumentosLegales" Guid="7B289C8E-6F5B-4A7B-A9A1-E78A89239720">
+							<File Id="DocumentosLegales" Source="$(sys.CURRENTDIR)ar03\Release\XDL.CNK"/>
+							<RemoveFile Id="RVDocumentosLegales" Name="XDL.CNK" On="uninstall"/>
+						</Component>	
+						<Component Id="ImpresionCheques" Guid="7B289C8E-6F5B-4A7B-A9A1-E78A89239721">
+							<File Id="ImpresionCheques" Source="$(sys.CURRENTDIR)ar03\Release\ChkPrnt.cnk"/>
+							<RemoveFile Id="RVImpresionCheques" Name="ChkPrnt.cnk" On="uninstall"/>
+						</Component>	
+						<Component Id="Percepciones" Guid="7B289C8E-6F5B-4A7B-A9A1-E78A89239722">
+							<File Id="Percepciones" Source="$(sys.CURRENTDIR)ar03\Release\XPR.cnk"/>
+							<RemoveFile Id="RVPercepciones" Name="XPR.cnk" On="uninstall"/>
+						</Component>
+						<Component Id="NuevoCITI" Guid="7B289C8E-6F5B-4A7B-A9A1-E78A89239723">
+							<File Id="NuevoCiti" Source="$(sys.CURRENTDIR)ar03\Release\CPVT_01.cnk"/>
+							<RemoveFile Id="RVNuevoCiti" Name="CPVT_01.cnk" On="uninstall"/>
+						</Component>
+
+					<Directory Id="GeneradorPDF" Name="GP Factura Digital v33">
+						<Component Id="EjecutableEncriptador" Guid="86f24e6c-389e-464b-b2ad-790efba8457a">
+							<File Id="EjecutableEncriptador"  Source="$(sys.CURRENTDIR)mx01\Release\EjecutableEncriptador.exe" DiskId="1" KeyPath="yes"/>
+							<File Id="EjecutableEncriptadorconfig"  Source="$(sys.CURRENTDIR)mx01\Release\EjecutableEncriptador.exe.config" DiskId="1" KeyPath="no"/>
+						</Component>
+						<Component Id="Comun" Guid="B279B297-7290-42a4-8D38-1AF9DF1CF31D">
+							<File Id="Comun"  Source="$(sys.CURRENTDIR)mx01\Release\Comun.dll" DiskId="1" KeyPath="yes"/>
+						</Component>
+						<Component Id="Parametros" Guid="803CC646-A468-47e3-9FDF-36935BCA4D89">
+							<File Id="ParametrosCfdi" Source="$(sys.CURRENTDIR)mx01\Release\ParametrosCfdi.xml" DiskId="1" KeyPath="no"/>
+						</Component>
+						<Component Id="EMailManejador" Guid="2C73E2CE-2A0B-4358-8E28-10201B86B693">
+							<File Id="EMailManejador"  Source="$(sys.CURRENTDIR)mx01\Release\EMailManejador.dll" DiskId="1" KeyPath="yes"/>
+						</Component>
+						<Component Id="MaquinaDeEstados" Guid="C25C6559-1445-4621-B3BB-6A1D77BADD98">
+							<File Id="MaquinaDeEstados"  Source="$(sys.CURRENTDIR)mx01\Release\MaquinaDeEstados.dll" DiskId="1" KeyPath="yes"/>
+						</Component>
+						<Component Id="Encriptador" Guid="AE9D4AE3-A494-44b5-BF8A-45B5FA987BB8">
+							<File Id="Encriptador"  Source="$(sys.CURRENTDIR)mx01\Release\Encriptador.dll" DiskId="1" KeyPath="yes"/>
+							<File Id="Encriptador.XmlSerializers"  Source="$(sys.CURRENTDIR)mx01\Release\Encriptador.XmlSerializers.dll" DiskId="1" KeyPath="no"/>
+						</Component>
+						<Component Id="MyGeneration.dOOdads_2005" Guid="336CAF4D-F98E-45e0-AE15-DF23EAB24D75">
+							<File Id="MyGeneration.dOOdads_2005"  Source="$(sys.CURRENTDIR)mx01\Release\MyGeneration.dOOdads_2005.dll" DiskId="1" KeyPath="yes"/>
+						</Component>
+						<Component Id="Reporteador" Guid="B6471120-14DB-43c4-A784-7C6DB1531489">
+							<File Id="Reporteador" Source="$(sys.CURRENTDIR)mx01\Release\Reporteador.dll" DiskId="1" KeyPath="yes"/>
+							<File Id="Reporteador.XmlSerializers"  Source="$(sys.CURRENTDIR)mx01\Release\Reporteador.XmlSerializers.dll" DiskId="1" KeyPath="no"/>
+							<File Id="Microsoft.ReportViewer.Common"  Source="$(sys.CURRENTDIR)mx01\Release\Microsoft.ReportViewer.Common.dll" DiskId="1" KeyPath="no"/>
+							<File Id="Microsoft.ReportViewer.WinForms"  Source="$(sys.CURRENTDIR)mx01\Release\Microsoft.ReportViewer.WinForms.dll" DiskId="1" KeyPath="no"/>
+							<File Id="Microsoft.ReportViewer.WinForms.xml"  Source="$(sys.CURRENTDIR)mx01\Release\Microsoft.ReportViewer.WinForms.xml" DiskId="1" KeyPath="no"/>
+						</Component>
+						<Component Id="QRCodeLib" Guid="CC0250EC-B886-42e4-9CDB-B570C71CB385">
+							<File Id="QRCodeLib"  Source="$(sys.CURRENTDIR)mx01\Release\QRCodeLib.dll" DiskId="1" KeyPath="yes"/>
+							<File Id="stdole"  Source="$(sys.CURRENTDIR)mx01\Release\stdole.dll" DiskId="1" KeyPath="no"/>
+							<File Id="webservices"  Source="$(sys.CURRENTDIR)mx01\Release\System.Web.Services.dll" DiskId="1" KeyPath="no"/>
+						</Component>
+						<Component Id="Compresor" Guid="FC22CA1D-4E4F-47e5-AE5C-8D6AD882E1DD">
+							<File Id="Compresor"  Source="$(sys.CURRENTDIR)mx01\Release\Ionic.Zip.Reduced.dll" DiskId="1" KeyPath="yes"/>
+						</Component>
+						<Directory Id="ReporteFE" Name="Reporte FE">
+							<Component Id="ReporteFE" Guid="E4AA4677-6DDA-4746-A956-0A636DBB2996">
+								<File Id="ReporteFE" Source="$(sys.CURRENTDIR)ar04\Release\FE_Factura_Gral.rdl"/>
+								<File Id="ReporteFE_EXP" Source="$(sys.CURRENTDIR)ar04\Release\FE_Factura_Gral_Exp.rdl"/>
+								<RemoveFile Id="RVReporteFE" Name="FE_Factura_Gral.rdl" On="uninstall"/>
+								<RemoveFile Id="RVReporteFE_EXP" Name="FE_Factura_Gral_Exp.rdl" On="uninstall"/>
+							</Component>
+						</Directory>
+					</Directory>
+					<Directory Id="ReporteCTACTE" Name="Reportes Tii">
+						<Component Id="ReporteCTACTE" Guid="7B289C8E-6F5B-4A7B-A9A1-E78A89239745">
+							<File Id="ReporteCTACTE" Source="$(sys.CURRENTDIR)dgp04\Release\TII Cuenta Cte Prov.rdl"/>
+							<RemoveFile Id="ReporteCTACTE" Name="TII Cuenta Cte Prov.rdl" On="both"/>
+							<File Id="deploy_cta" Source="$(sys.CURRENTDIR)dgp04\Release\deploy.rss"/>
+							<RemoveFile Id="deploy_cta" Name="deploy.rss" On="both"/>
+						</Component>
+					</Directory>		
+					<Directory Id="DLL" Name="AddIns">
+						<Component Id="DLLFacturaElectronica" Guid="7B289C8E-6F5B-4A7B-A9A1-E78A89239724">
+							<File Id="ACA_WSFE" Source="$(sys.CURRENTDIR)ar03\Release\ACA_WSFE.dll" KeyPath='yes' />
+							<RemoveFile Id="ACA_WSFE" Name="ACA_WSFE.dll" On="both"/>
+							<File Id="FEEXP" Source="$(sys.CURRENTDIR)ar03\Release\FEEXP.dll"/>
+							<RemoveFile Id="FEEXP" Name="FEEXP.dll" On="both"/>
+							<File Id="RegistrarDLL" Source="$(sys.CURRENTDIR)ar03\Release\Registrar FEdll.bat"/>
+							<RemoveFile Id="RegistrarD" Name="Registrar FEdll.bat" On="both"/>
+						</Component>	
+					</Directory>
+					<Directory Id="InstaladorSQL" Name="Instalador Compañia">
+						<Component Id="InstaladorSQL" Guid="7B289C8E-6F5B-4A7B-A9A1-E78A89239725">
+							<File Id="InstaladorSQL" Source="$(var.SolutionDir)LocArgSetupCompaniaSQL\bin\Debug\LocArgSetupCompaniaSQL.msi"/>
+							<RemoveFile Id="InstaladorSQL" Name="LocArgSetupCompaniaSQL.msi" On="both"/>
+							<File Id="report_deploy" Source="$(var.SolutionDir)LocArgSetupCompaniaSQL\deploy_report_FE.rss"/>
+							<RemoveFile Id="report_deploy" Name="deploy_report_FE.rss" On="both"/>
+						</Component>
+					</Directory>
+				</Directory>
+			</Directory>
+		</Directory>
+   </Fragment>
+
+</Wix>
