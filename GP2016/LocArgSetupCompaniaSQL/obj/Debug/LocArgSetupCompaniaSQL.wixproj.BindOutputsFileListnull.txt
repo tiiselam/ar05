@@ -1,2 +1,0 @@
-C:\Users\Admin\Documents\GitHub\ar05\GP2016\LocArgSetupCompaniaSQL\bin\Debug\LocArgSetupCompaniaSQL.msi
-C:\Users\Admin\Documents\GitHub\ar05\GP2016\LocArgSetupCompaniaSQL\bin\Debug\LocArgSetupCompaniaSQL.wixpdb
