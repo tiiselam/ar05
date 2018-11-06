@@ -352,7 +352,7 @@ namespace MyCustomAction
 
             //MessageBox.Show(command, "Invalid info");
 
-            File.WriteAllText(@"C:\Instalador\Comando.txt", command);
+            File.WriteAllText(@PATH + "\\GP Factura Digital v33\\Reporte Fe\\Comando_FE" + SQLDB + ".txt", command);
 
             ExecuteCommand(command);
 
@@ -368,7 +368,7 @@ namespace MyCustomAction
 
             //MessageBox.Show(command, "Invalid info");
 
-            File.WriteAllText(@"C:\Instalador\Comando1.txt", command);
+            File.WriteAllText(@PATH + "\\GP Factura Digital v33\\Reporte Fe\\Comando_FE_EXP" + SQLDB + ".txt", command);
 
             ExecuteCommand(command);
             

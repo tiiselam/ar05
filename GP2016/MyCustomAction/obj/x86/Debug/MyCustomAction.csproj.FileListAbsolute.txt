@@ -37,3 +37,16 @@ C:\DESA\TIISELAM\Instalador\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.c
 C:\DESA\TIISELAM\Instalador\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.csproj.CopyComplete
 C:\DESA\TIISELAM\Instalador\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.dll
 C:\DESA\TIISELAM\Instalador\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.pdb
+C:\Users\Admin\Documents\GitHub\ar05\GP2016\MyCustomAction\bin\Debug\MyCustomAction.dll
+C:\Users\Admin\Documents\GitHub\ar05\GP2016\MyCustomAction\bin\Debug\MyCustomAction.CA.dll
+C:\Users\Admin\Documents\GitHub\ar05\GP2016\MyCustomAction\bin\Debug\MyCustomAction.pdb
+C:\Users\Admin\Documents\GitHub\ar05\GP2016\MyCustomAction\bin\Debug\Microsoft.Deployment.WindowsInstaller.dll
+C:\Users\Admin\Documents\GitHub\ar05\GP2016\MyCustomAction\bin\Debug\Microsoft.Deployment.WindowsInstaller.xml
+C:\Users\Admin\Documents\GitHub\ar05\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.csprojAssemblyReference.cache
+C:\Users\Admin\Documents\GitHub\ar05\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.frmLicenseInfo.resources
+C:\Users\Admin\Documents\GitHub\ar05\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.Properties.Resources.resources
+C:\Users\Admin\Documents\GitHub\ar05\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.csproj.GenerateResource.cache
+C:\Users\Admin\Documents\GitHub\ar05\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\GitHub\ar05\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.csproj.CopyComplete
+C:\Users\Admin\Documents\GitHub\ar05\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.dll
+C:\Users\Admin\Documents\GitHub\ar05\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.pdb
