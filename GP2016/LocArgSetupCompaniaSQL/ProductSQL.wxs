@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+	 xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
+	 xmlns:sql="http://schemas.microsoft.com/wix/SqlExtension">
+
+	<Product Id="6E38CD38-3415-4FC5-9620-3879DBC6B671" Name="Instalador LOCARG Compañia"
+           Language="1033" Version="7.2.0.0" Manufacturer="JCF" UpgradeCode="44281eba-a31e-4e51-92b8-ff8327561a96">
+		<Package Id="*" InstallerVersion="200" Manufacturer="JCF" Compressed="yes" />
+		
+		<!--Product Id="*" Name="Win App" Language="1033" Version="2.0.0.0" Manufacturer="WinApp Software Inc." UpgradeCode="a9b1d837-9b09-491b-bd81-b794560745a4">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" /-->
+
+		<!--MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." /-->
+
+		<Media Id="1" Cabinet="WinApp.cab" EmbedCab="yes" />
+
+		
+		<Feature Id="InstalacionCompleta" Title="GP Factura Digital" Level="1" Description="Objetos sql y archivos de programa." Display="expand" ConfigurableDirectory="INSTALLDIR">
+			<Feature Id="DYNCNKS" Title="GP Localizacion ARG" Description="Archivos SQL, VISTAS, FUNCIONES, SP" Level="1">
+				<Feature Id="MedioCobroPago" Title="Medios de Cobro Pago" Description="Medios de Cobro Pago" Level="1">
+					<ComponentRef Id="MedioCobroPago" />
+				</Feature>
+				<Feature Id="ListadorImpuestos"  Title="Listador de Impuestos" Description="Listador de Impuestos" Level="1">
+					<ComponentRef Id="ListadorImpuestos" />
+				</Feature>
+				<Feature Id="DocumentosLegales" Title="Documentos Legales" Description="Documentos Legales" Level="1">	
+					<ComponentRef Id="DocumentosLegales" />
+				</Feature>		
+				<Feature Id="ImpresionCheques" Title="Impresión de Cheques" Description="Impresión de cheques" Level="1">	
+					<ComponentRef Id="ImpresionCheques" />
+				</Feature>				
+				<Feature Id="Percepciones" Title="Percepciones" Description="Percepciones" Level="1">							
+					<ComponentRef Id="Percepciones" />
+				</Feature>				
+				
+				<Feature Id="NuevoCITI" Title="Nuevo CITI" Description="Nuevo CITI" Level="1">			
+					<ComponentRef Id="NuevoCITI" />
+				</Feature>				
+			
+			</Feature>
+			<Feature Id="GeneradorPDFRep" Title="Generador PDF + Reportes Custom" Description="Generador PDF + Reportes de Factura" Level="1">
+				<Feature Id="ReporteFE"  Title="Reporte RS FE" Description="Reporte de Factura Electronica(Reporting Services)" Level="1">
+					<ComponentRef Id="ReporteFE" />
+				</Feature>
+				<Feature Id="ReportesTII"  Title="Reportes TII" Description="Reportes VArios TII" Level="1">
+					<ComponentRef Id="ReporteTII" />
+				</Feature>
+				<Feature Id="GeneradorPDF"  Title="Generador PDF" Description="Aplicativo para generar Facturas en PDF " Level="1">
+					<ComponentRef Id="SqlComponentDyn" />
+					<ComponentRef Id="SQLGeneradorPDF" />
+				</Feature>
+				
+			</Feature>	
+			<ComponentRef Id="Grants" />
+		</Feature>
+
+		<!--Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" /-->
+		<!--UIRef Id="WixUI_InstallDir" /-->
+		
+		<util:User Id="SQLUser" Name="[SQLUSER]" Password="[SQLPASSWORD]"></util:User>
+		<!--Variables SQL-->
+		<Property Id="SQLUSER">sa</Property>
+		<Property Id="SQLPASSWORD">password</Property>
+		<Property Id="SQLSERVER">servidor\instancia</Property>
+		<Property Id="SQLDATABASE">bd</Property>
+		<Property Id="PATHPARAM"  Value='[INSTALLDIR]'></Property>
+
+		<UI Id="MyWixUI_Mondo">
+			<UIRef Id="WixUI_Mondo"/>
+			
+			<!--Pide valores para variables SQL-->
+			<DialogRef Id="UserRegistrationDlg"/>
+
+			<Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Value="UserRegistrationDlg" Order="4">WixUI_InstallMode = "Change"</Publish>
+			<Publish Dialog="CustomizeDlg"  Control="Next" Event="NewDialog" Value="UserRegistrationDlg" Order="5">WixUI_InstallMode = "InstallCustom"</Publish>
+			<Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="UserRegistrationDlg" Order="5">WixUI_InstallMode = "InstallCustom"</Publish>
+			<Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="UserRegistrationDlg" Order="6">WixUI_InstallMode = "Change"</Publish>
+		</UI>
+
+		<UIRef Id="WixUI_ErrorProgressText" />
+		
+
+		<InstallExecuteSequence>
+			<!--Custom Action='LicenseInfoCustomAction' After='InstallInitialize'>NOT Installed</Custom-->
+			<Custom Action='LicenseInfoCustomAction' After='InstallInitialize'></Custom>
+		</InstallExecuteSequence>
+		
+	
+	
+
+	</Product>
+
+	<Fragment>
+		<Binary Id="CustomActionBinary" SourceFile="$(var.MyCustomAction.TargetDir)$(var.MyCustomAction.TargetName).CA.dll"/>
+		<CustomAction Id="LicenseInfoCustomAction" BinaryKey="CustomActionBinary" DllEntry="ShowLicenseInfo" Execute="immediate" Return="check"/>
+	</Fragment>
+	
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLDIR" Name="Microsoft Dynamics">
+					<Directory Id="CNKS" Name="CNKS">
+						<Component Id="MedioCobroPago" Guid="7B289C8E-6F5B-4A7B-A9A1-E78A89239714"  KeyPath="yes">
+							<sql:SqlDatabase Id="SqlMCP9882" User="SQLUser" Server="[SQLSERVER]" Database="[SQLDATABASE]" CreateOnInstall="no" DropOnUninstall="no" ContinueOnError="yes" >
+								<sql:SqlScript Id="SQL9882_COMPANY_1_Views" BinaryKey="SQL9882_COMPANY_1_Views" ExecuteOnInstall="yes" Sequence="9882" ContinueOnError="no"/>
+								<sql:SqlScript Id="SQL9882_COMPANY_2_Procs" BinaryKey="SQL9882_COMPANY_2_Procs" ExecuteOnInstall="yes" Sequence="9882" ContinueOnError="no"/>
+							</sql:SqlDatabase>
+						</Component>							
+						<Component Id="ListadorImpuestos" Guid="7B289C8E-6F5B-4A7B-A9A1-E78A89239715" KeyPath="yes">
+							<sql:SqlDatabase Id="SqlAWLI9883" User="SQLUser" Server="[SQLSERVER]" Database="[SQLDATABASE]" CreateOnInstall="no" DropOnUninstall="no" ContinueOnError="yes" >
+								<sql:SqlScript Id="SQL9883_COMPANY_1_Views" BinaryKey="SQL9883_COMPANY_1_Views" ExecuteOnInstall="yes" Sequence="9883" ContinueOnError="no"/>
+								<sql:SqlScript Id="SQL9883_COMPANY_2_Funcs" BinaryKey="SQL9883_COMPANY_2_Funcs" ExecuteOnInstall="yes" Sequence="9883" ContinueOnError="no"/>
+								<sql:SqlScript Id="SQL9883_COMPANY_3_Procs" BinaryKey="SQL9883_COMPANY_3_Procs" ExecuteOnInstall="yes" Sequence="9883" ContinueOnError="no"/>
+								<sql:SqlScript Id="SQL9883_COMPANY_5_Views" BinaryKey="SQL9883_COMPANY_5_Views" ExecuteOnInstall="yes" Sequence="9883" ContinueOnError="no"/>
+							</sql:SqlDatabase>
+						</Component>													
+						<Component Id="DocumentosLegales" Guid="7B289C8E-6F5B-4A7B-A9A1-E78A89239720" KeyPath="yes">
+							<sql:SqlDatabase Id="SqlXLD4350" User="SQLUser" Server="[SQLSERVER]" Database="[SQLDATABASE]" CreateOnInstall="no" DropOnUninstall="no" ContinueOnError="yes" >
+								<sql:SqlScript Id="SQL4350_COMPANY_1_Views" BinaryKey="SQL4350_COMPANY_1_Views" ExecuteOnInstall="yes" Sequence="4350" ContinueOnError="no"/>
+								<sql:SqlScript Id="SQL4350_COMPANY_2_Funcs" BinaryKey="SQL4350_COMPANY_2_Funcs" ExecuteOnInstall="yes" Sequence="4350" ContinueOnError="no"/>
+								<sql:SqlScript Id="SQL4350_COMPANY_3_Procs" BinaryKey="SQL4350_COMPANY_3_Procs" ExecuteOnInstall="yes" Sequence="4350" ContinueOnError="no"/>
+							</sql:SqlDatabase>
+						</Component>	
+						<Component Id="ImpresionCheques" Guid="7B289C8E-6F5B-4A7B-A9A1-E78A89239721" KeyPath="yes">
+							<sql:SqlDatabase Id="SqlXAC9884" User="SQLUser" Server="[SQLSERVER]" Database="[SQLDATABASE]" CreateOnInstall="no" DropOnUninstall="no" ContinueOnError="yes" >
+								<sql:SqlScript Id="SQL9884_COMPANY_1_Procs" BinaryKey="SQL9884_COMPANY_1_Procs" ExecuteOnInstall="yes" Sequence="9884" ContinueOnError="no"/>
+							</sql:SqlDatabase>
+						</Component>	
+						<Component Id="Percepciones" Guid="7B289C8E-6F5B-4A7B-A9A1-E78A89239722"  KeyPath="yes">
+							<sql:SqlDatabase Id="SqlXPR4100" User="SQLUser" Server="[SQLSERVER]" Database="[SQLDATABASE]" CreateOnInstall="no" DropOnUninstall="no" ContinueOnError="yes" >
+								<sql:SqlScript Id="SQL4100_COMPANY_1_Procs" BinaryKey="SQL4100_COMPANY_1_Procs" ExecuteOnInstall="yes" Sequence="4100" ContinueOnError="no"/>
+							</sql:SqlDatabase>
+						</Component>
+						<Component Id="NuevoCITI" Guid="7B289C8E-6F5B-4A7B-A9A1-E78A89239723"  KeyPath="yes">
+							<sql:SqlDatabase Id="SqlRG385" User="SQLUser" Server="[SQLSERVER]" Database="[SQLDATABASE]" CreateOnInstall="no" DropOnUninstall="no" ContinueOnError="yes" >
+								<sql:SqlScript Id="SQLNuevoCITI_CA" BinaryKey="SQLNuevoCITI_CA" ExecuteOnInstall="yes" Sequence="385" ContinueOnError="no"/>
+								<sql:SqlScript Id="SQLNuevoCITI_CC" BinaryKey="SQLNuevoCITI_CC" ExecuteOnInstall="yes" Sequence="385" ContinueOnError="no"/>
+								<sql:SqlScript Id="SQLNuevoCITI_CE" BinaryKey="SQLNuevoCITI_CE" ExecuteOnInstall="yes" Sequence="385" ContinueOnError="no"/>
+								<sql:SqlScript Id="SQLNuevoCITI_CI" BinaryKey="SQLNuevoCITI_CI" ExecuteOnInstall="yes" Sequence="385" ContinueOnError="no"/>
+								<sql:SqlScript Id="SQLNuevoCITI_VA" BinaryKey="SQLNuevoCITI_VA" ExecuteOnInstall="yes" Sequence="385" ContinueOnError="no"/>
+								<sql:SqlScript Id="SQLNuevoCITI_VC" BinaryKey="SQLNuevoCITI_VC" ExecuteOnInstall="yes" Sequence="385" ContinueOnError="no"/>
+							</sql:SqlDatabase>
+						</Component>
+					</Directory>
+					
+					<Directory Id="GeneradorPDF" Name="GP Factura Digital v33">
+						<Component Id="SqlComponentDyn" Guid="116E3271-192B-4ea7-8CB3-E91CDA1B8C03" KeyPath="yes">
+							<sql:SqlDatabase Id="SqlDatabaseDyn" User="SQLUser" Server="[SQLSERVER]" Database="DYNAMICS" CreateOnInstall="no" DropOnUninstall="no" ContinueOnError="yes">
+								<sql:SqlScript Id="Createview01" BinaryKey="Createview01" ExecuteOnInstall="yes" Sequence="30" ContinueOnError="no"/>
+								<sql:SqlScript Id="Grants02" BinaryKey="Grants02" ExecuteOnInstall="yes" Sequence="1000" ContinueOnError="no"/>
+							</sql:SqlDatabase>
+						</Component>
+						<Component Id="SQLGeneradorPDF" Guid="7c32cf65-e060-4c7f-b5dd-d85c181da89c" KeyPath="yes">
+							<sql:SqlDatabase Id="SqlDatabase" User="SQLUser" Server="[SQLSERVER]" Database="[SQLDATABASE]" CreateOnInstall="no" DropOnUninstall="no" ContinueOnError="yes" >
+								<sql:SqlScript Id="CreateBaseView02" BinaryKey="CreateBaseView02" ExecuteOnInstall="yes" Sequence="02" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateBaseView04" BinaryKey="CreateBaseView04" ExecuteOnInstall="yes" Sequence="04" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateBaseView06" BinaryKey="CreateBaseView06" ExecuteOnInstall="yes" Sequence="06" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateBaseView08" BinaryKey="CreateBaseView08" ExecuteOnInstall="yes" Sequence="06" ExecuteOnReinstall="yes"/>
+
+								<sql:SqlScript Id="CreateFun03" BinaryKey="CreateFun03" ExecuteOnInstall="yes" Sequence="07" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateObj03" BinaryKey="CreateObj03" ExecuteOnInstall="yes" Sequence="08" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateObj04" BinaryKey="CreateObj04" ExecuteOnInstall="yes" Sequence="08" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateObj10" BinaryKey="CreateObj10" ExecuteOnInstall="yes" Sequence="09" ExecuteOnReinstall="yes"/>
+
+								<sql:SqlScript Id="Createview10" BinaryKey="Createview10" ExecuteOnInstall="yes" Sequence="10" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="Createfun12" BinaryKey="Createfun12" ExecuteOnInstall="yes" Sequence="12" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateObj14" BinaryKey="CreateObj14" ExecuteOnInstall="yes" Sequence="14" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateObj15" BinaryKey="CreateObj15" ExecuteOnInstall="yes" Sequence="15" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateObj18" BinaryKey="CreateObj18" ExecuteOnInstall="yes" Sequence="18" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="Createtrig35" BinaryKey="Createtrig35" ExecuteOnInstall="yes" Sequence="35" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="Createview40" BinaryKey="Createview40" ExecuteOnInstall="yes" Sequence="40" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="Createfun50" BinaryKey="Createfun50" ExecuteOnInstall="yes" Sequence="50" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="Createtable60" BinaryKey="Createtable60" ExecuteOnInstall="yes" Sequence="60" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="Createtable70" BinaryKey="Createtable70" ExecuteOnInstall="yes" Sequence="70" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="Createfun72" BinaryKey="Createfun72" ExecuteOnInstall="yes" Sequence="72" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateObj75" BinaryKey="CreateObj75" ExecuteOnInstall="yes" Sequence="75" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="Createsp80" BinaryKey="Createsp80" ExecuteOnInstall="yes" Sequence="80" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="Createview83" BinaryKey="Createview83" ExecuteOnInstall="yes" Sequence="83" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="Createview84" BinaryKey="Createview84" ExecuteOnInstall="yes" Sequence="84" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="Createfunc85" BinaryKey="Createfunc85" ExecuteOnInstall="yes" Sequence="85" ExecuteOnReinstall="yes"/>
+
+								<sql:SqlScript Id="Createview90" BinaryKey="Createview90" ExecuteOnInstall="yes" Sequence="90" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateObj92" BinaryKey="CreateObj92" ExecuteOnInstall="yes" Sequence="92" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateObj94" BinaryKey="CreateObj94" ExecuteOnInstall="yes" Sequence="94" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="Createfunc98" BinaryKey="Createfunc98" ExecuteOnInstall="yes" Sequence="98" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="Createview100" BinaryKey="Createview100" ExecuteOnInstall="yes" Sequence="100" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="Createview110" BinaryKey="Createview110" ExecuteOnInstall="yes" Sequence="110" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="Createview115" BinaryKey="Createview115" ExecuteOnInstall="yes" Sequence="115" ExecuteOnReinstall="yes"/>
+
+								<sql:SqlScript Id="CreateObj117" BinaryKey="CreateObj117" ExecuteOnInstall="yes" Sequence="117" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateObj120" BinaryKey="CreateObj120" ExecuteOnInstall="yes" Sequence="120" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateObj122" BinaryKey="CreateObj122" ExecuteOnInstall="yes" Sequence="122" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateObj123" BinaryKey="CreateObj123" ExecuteOnInstall="yes" Sequence="123" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateObj124" BinaryKey="CreateObj124" ExecuteOnInstall="yes" Sequence="124" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateObj125" BinaryKey="CreateObj125" ExecuteOnInstall="yes" Sequence="125" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateObj126" BinaryKey="CreateObj126" ExecuteOnInstall="yes" Sequence="126" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateObj128" BinaryKey="CreateObj128" ExecuteOnInstall="yes" Sequence="128" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateObj129" BinaryKey="CreateObj129" ExecuteOnInstall="yes" Sequence="129" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateObj130" BinaryKey="CreateObj130" ExecuteOnInstall="yes" Sequence="130" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateObj140" BinaryKey="CreateObj140" ExecuteOnInstall="yes" Sequence="140" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateObj150" BinaryKey="CreateObj150" ExecuteOnInstall="yes" Sequence="150" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="CreateObj151" BinaryKey="CreateObj151" ExecuteOnInstall="yes" Sequence="151" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="Grants190" BinaryKey="Grants190" ExecuteOnInstall="yes" Sequence="190" ExecuteOnReinstall="yes"/>
+
+								<!--<sql:SqlScript Id="Createfunc219" BinaryKey="Createfunc119" ExecuteOnInstall="yes" Sequence="119" ExecuteOnReinstall="yes"/>-->
+								<sql:SqlScript Id="Createfunc210" BinaryKey="Createfunc210" ExecuteOnInstall="yes" Sequence="210" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="Createview220" BinaryKey="Createview220" ExecuteOnInstall="yes" Sequence="220" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="Createview225" BinaryKey="Createview225" ExecuteOnInstall="yes" Sequence="225" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="Createview227" BinaryKey="Createview227" ExecuteOnInstall="yes" Sequence="227" ExecuteOnReinstall="yes"/>
+								<sql:SqlScript Id="Grants230" BinaryKey="Grants230" ExecuteOnInstall="yes" Sequence="230" ExecuteOnReinstall="yes"/>
+							</sql:SqlDatabase>
+						</Component>
+						<Directory Id="ReporteFE" Name="Reporte FE">
+							<Component Id="ReporteFE" Guid="116E3271-192B-4ea7-8CB3-E91CDA1B8C04" KeyPath="yes">
+								<sql:SqlDatabase Id="ReporteFE_CMP" User="SQLUser" Server="[SQLSERVER]" Database="[SQLDATABASE]" CreateOnInstall="no" DropOnUninstall="no" ContinueOnError="yes" >
+									<sql:SqlScript Id="Createfunc500" BinaryKey="Createfunc500" ExecuteOnInstall="yes" Sequence="500" ContinueOnError="no"/>
+									<sql:SqlScript Id="Createfunc510" BinaryKey="Createfunc510" ExecuteOnInstall="yes" Sequence="510" ContinueOnError="no"/>
+									<sql:SqlScript Id="Createview520" BinaryKey="Createview520" ExecuteOnInstall="yes" Sequence="520" ContinueOnError="no"/>
+									<!--sql:SqlScript Id="Createview525" BinaryKey="Createview525" ExecuteOnInstall="yes" Sequence="525" ContinueOnError="no"/-->
+									<sql:SqlScript Id="Createrol530" BinaryKey="Createrol530" ExecuteOnInstall="yes" Sequence="530" ContinueOnError="no"/>
+									<sql:SqlScript Id="CreateGrant540" BinaryKey="CreateGrant540" ExecuteOnInstall="yes" Sequence="540" ContinueOnError="no"/>
+								</sql:SqlDatabase>
+								<sql:SqlDatabase Id="ReporteFE_DYN" User="SQLUser" Server="[SQLSERVER]" Database="DYNAMICS" CreateOnInstall="no" DropOnUninstall="no" ContinueOnError="yes" >
+									<sql:SqlScript Id="Createrol535" BinaryKey="Createrol530" ExecuteOnInstall="yes" Sequence="530" ContinueOnError="no"/>
+									<sql:SqlScript Id="CreateGrant550" BinaryKey="CreateGrant550" ExecuteOnInstall="yes" Sequence="550" ContinueOnError="no"/>
+								</sql:SqlDatabase>
+							</Component>
+						</Directory>
+						<Directory Id="ReporteTII" Name="Reporte TII">
+							<Component Id="ReporteTII" Guid="116E3271-192B-4ea7-8CB3-E91CDA1B8C06" KeyPath="yes">
+								<sql:SqlDatabase Id="ReporteCTA" User="SQLUser" Server="[SQLSERVER]" Database="[SQLDATABASE]" CreateOnInstall="no" DropOnUninstall="no" ContinueOnError="yes" >
+									<sql:SqlScript Id="CreateView700" BinaryKey="CreateView700" ExecuteOnInstall="yes" Sequence="700" ContinueOnError="no"/>
+									<sql:SqlScript Id="CreateRol710" BinaryKey="CreateRol710" ExecuteOnInstall="yes" Sequence="710" ContinueOnError="no"/>
+									<sql:SqlScript Id="CreateGrant720" BinaryKey="CreateGrant720" ExecuteOnInstall="yes" Sequence="720" ContinueOnError="no"/>
+								</sql:SqlDatabase>
+							</Component>
+						</Directory>
+					</Directory>
+					<Component Id="Grants" Guid="116E3271-192B-4ea7-8CB3-E91CDA1B8C14" KeyPath="yes">
+						<sql:SqlDatabase Id="GrantsDyn" User="SQLUser" Server="[SQLSERVER]" Database="DYNAMICS" CreateOnInstall="no" DropOnUninstall="no" ContinueOnError="yes">
+								<sql:SqlScript Id="CreateGrant610" BinaryKey="CreateGrant610" ExecuteOnInstall="yes" Sequence="30" ContinueOnError="no"/>
+						</sql:SqlDatabase>	
+						<sql:SqlDatabase Id="Grants" User="SQLUser" Server="[SQLSERVER]" Database="[SQLDATABASE]" CreateOnInstall="no" DropOnUninstall="no" ContinueOnError="yes" >
+								<sql:SqlScript Id="CreateGrant600" BinaryKey="CreateGrant600" ExecuteOnInstall="yes" Sequence="500" ContinueOnError="no"/>
+						</sql:SqlDatabase>
+					</Component>
+				</Directory>
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<!--FRAGMENTO BINARIOS DE GENERADOR PDF-->
+	<Fragment>			
+		<Binary Id="Createview01" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\001_DynObtieneBdsQueEmitenFElectronica.view.sql"/>
+		<Binary Id="Grants02" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\002_DynDaPermisosFacturaElectronica.grant.sql"/>
+
+		<Binary Id="CreateBaseView02" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\000_10_rmvwRmTransaccionesTodas.view.sql"/>
+		<Binary Id="CreateBaseView04" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\000_15_rmVwTrxAplicadas.view.sql"/>
+		<Binary Id="CreateBaseView06" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\000_20_rmVwRmTrxAplicadasExtendidas.view.sql"/>
+		<Binary Id="CreateBaseView08" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\000_25_ivVwIvTransaccionesTH.view.sql"/>
+		
+		<Binary Id="CreateFun03" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\003_fcfdiParametros.function.sql"/>
+		<Binary Id="CreateObj03" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\003_fcfdiParametrosCliente.function.sql"/>
+		<Binary Id="CreateObj04" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\004_fCfdiComercioExteriorParametrosPais.function.sql"/>
+		
+		<Binary Id="CreateObj10" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\010_cfdiCatalogo.table.sql"/>
+		<Binary Id="Createview10" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\010_vwCfdiRmTrxAplicadas.view.sql"/>
+		<Binary Id="Createfun12" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\012_fCfdObtieneImagenC.function.sql"/>
+		<Binary Id="CreateObj14" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\014_fCfdiFormaPago.function.sql"/>
+		<Binary Id="CreateObj15" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\015_fCfdiPagoSimultaneoMayor.function.sql"/>
+		<Binary Id="CreateObj18" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\018_vwfCfdiPagosSimultaneos.view.sql"/>
+		<Binary Id="Createtrig35" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\035_RegistraHoradeFacturaElectronica.trigger.sql"/>
+
+		<!--Atención: Varía de acuerdo a la VERSION GP-->
+		<Binary Id="Createview40" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\040_ObtieneConfiguracionCartasEmail.viewgp2013oAnt.sql"/>
+
+		<Binary Id="Createfun50" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\050_ObtieneDireccionesCorreoClientes.function.sql"/>
+		<Binary Id="Createtable60" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\060_OPCIONALCreaMaestroDeCertificadosYFolios.table.sql"/>
+		<Binary Id="Createtable70" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\070_CreaLogFacturaElectronica.table.sql"/>
+		<Binary Id="Createfun72" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\072_fcfdDatosXmlParaImpresion.function.sql"/>
+		<Binary Id="CreateObj75" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\075_vwCfdiDatosDelXml.view.sql"/>
+		<Binary Id="Createsp80" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\080_ABMcfdLogFacturaXML.sprocedure.sql"/>
+		<Binary Id="Createview83" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\083_UtilesYConfiguracion.view.sql"/>
+		<Binary Id="Createview84" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\084_fCfdEmisor.function.sql"/>
+		<Binary Id="Createfunc85" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\085_fCfdDatosAdicionales.function.sql"/>
+		<Binary Id="Createview90" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\090_vwCfdiSopTransacionesVenta.view.sql"/>
+		<Binary Id="CreateObj92" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\092_FCFDIoBTIENEuuid.function.sql"/>
+		<Binary Id="CreateObj94" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\094_fCfdiRelacionados.functions.sql"/>
+		<Binary Id="Createfunc98" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\098_Addenda.function.sql"/>
+		<Binary Id="Createview100" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\100_ObtieneDocumentosXml.view.sql"/>
+		<Binary Id="Createview110" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\110_vwCfdiTransaccionesDeVenta.view.sql"/>
+		<Binary Id="Createview115" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\115_vwRmCfdiFacturasConFolioFiscal.view.sql"/>
+		
+		<Binary Id="CreateObj117" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\117_fCfdiPagosAcumulados.function.sql"/>
+		<Binary Id="CreateObj120" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\120_vwCfdiRMFacturas.view.sql"/>
+		<Binary Id="CreateObj122" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\122_fCfdiMcpFormaPago.function.sql"/>
+		<Binary Id="CreateObj123" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\123_fCfdiDocumentoDePagoRelacionado.function.sql"/>
+		<Binary Id="CreateObj124" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\124_fCfdiDocumentoDePagoXML_Nodo_Relacionado.function.sql"/>
+		<Binary Id="CreateObj125" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\125_fCfdiDocumentoDePago.function.sql"/>
+		<Binary Id="CreateObj126" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\126_fCfdiDocumentoDePagoXMLPago.function.sql"/>
+		<Binary Id="CreateObj128" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\128_fCfdiDocumentoDePagoXMLPagos.sql"/>
+		<Binary Id="CreateObj129" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\129_vwCfdiRelacionado.view.sql"/>
+		<Binary Id="CreateObj130" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\130_fCfdiDocumentoDePagoXML.function.sql"/>
+		<Binary Id="CreateObj140" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\140_vwCfdiTrxPagos.view.sql"/>
+		<Binary Id="CreateObj150" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\150_vwCfdiTrasladosInventario.view.sql"/>
+		<Binary Id="CreateObj151" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\151_vwCfdiTraslados.multiple views.sql"/>
+
+		<Binary Id="Grants190" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\190_DaPermisosFacturaElectronicaCia.grant.sql"/>
+
+		<!--Reportes y permisos STANDARD-->
+		<Binary Id="Createfunc210" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\10_tii_invoice_amount_letters.function.igarcia120622.sql"/>
+		<Binary Id="Createview220" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\20_tii_sopinvoice.view.sql"/>
+		<Binary Id="Createview225" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\25_vwRmImprimeCobros.view.sql"/>
+		<Binary Id="Createview227" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\27_vwCfdiTrasladoParaReporte.view.sql"/>
+		<Binary Id="Grants230" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\30_tii_sopinvoice.grant.sql"/>
+	</Fragment>
+	<!-- FRAGMENTO BINARIOS Reporte FE--> 
+	<Fragment>
+		<Binary Id="Createfunc500" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\10 - FNC GXPRFuncGetTax.sql"/>
+		<Binary Id="Createfunc510" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\20 - FNC GXPRFuncGetTaxItm.sql"/>
+		<Binary Id="Createview520" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\30 - VW GXPR_FC_ELECTRONICA.sql"/>
+		<!--Binary Id="Createview525" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\40 - VW GXPR_FC_ELECTRONICA_EXP.sql"/-->
+		<Binary Id="Createrol530" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\50 - ROL gpexp_facturaelectronica.sql"/>
+		<Binary Id="CreateGrant540" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\60 - GRNT GXPR_FC_ELECTRONICA.sql"/>
+		<Binary Id="CreateGrant550" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\70 - GRNT DYNAMICS.sql"/>
+	</Fragment>
+	<!-- FRAGMENTO BINARIOS Reportes TII-->
+	<Fragment>
+		<Binary Id="CreateView700" SourceFile="$(var.LocArgSetup.ProjectDir)dgp04\Release\10 - TII_CTA_CTE_PROVEEDOR_RPT.sql"/>
+		<Binary Id="CreateRol710" SourceFile="$(var.LocArgSetup.ProjectDir)dgp04\Release\20 - rol_TII_CTA_CTE_PROVEEDOR.sql"/>
+		<Binary Id="CreateGrant720" SourceFile="$(var.LocArgSetup.ProjectDir)dgp04\Release\30 - Grant TII_CTA_CTE_PROVEEDOR.sql"/>
+	</Fragment>
+	<!-- FRAGMENTO BINARIOS OBJETOS NO TABLAS PARA CNKS-->
+	<Fragment>
+		<!-- Medios de Cobros Pago--> 
+		<Binary Id="SQL9882_COMPANY_1_Views" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\9882_COMPANY_1_Views.sql"/>
+		<Binary Id="SQL9882_COMPANY_2_Procs" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\9882_COMPANY_2_Procs.sql"/>
+		<!-- Listador de Impuestos-->
+		<Binary Id="SQL9883_COMPANY_1_Views" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\9883_COMPANY_1_Views.sql"/>
+		<Binary Id="SQL9883_COMPANY_2_Funcs" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\9883_COMPANY_2_Funcs.sql"/>
+		<Binary Id="SQL9883_COMPANY_3_Procs" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\9883_COMPANY_3_Procs.sql"/>
+		<Binary Id="SQL9883_COMPANY_5_Views" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\9883_COMPANY_5_Views.sql"/>
+		<!-- Documentos Legales-->	
+		<Binary Id="SQL4350_COMPANY_1_Views" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\4350_COMPANY_1_Views.sql"/>
+		<Binary Id="SQL4350_COMPANY_2_Funcs" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\4350_COMPANY_2_Funcs.sql"/>
+		<Binary Id="SQL4350_COMPANY_3_Procs" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\4350_COMPANY_3_Procs.sql"/>
+		<!-- Impresion de cheques-->
+		<Binary Id="SQL9884_COMPANY_1_Procs" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\9884_COMPANY_1_Procs.sql"/>
+		<!-- Percepciones -->
+		<Binary Id="SQL4100_COMPANY_1_Procs" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\4100_COMPANY_1_Procs.sql"/>
+		<!-- NUEVO CITI -->
+		<Binary Id="SQLNuevoCITI_CA" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\NuevoCITI_CA.sql"/>
+		<Binary Id="SQLNuevoCITI_CC" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\NuevoCITI_CC.sql"/>
+		<Binary Id="SQLNuevoCITI_CE" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\NuevoCITI_CE.sql"/>
+		<Binary Id="SQLNuevoCITI_CI" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\NuevoCITI_CI.sql"/>
+		<Binary Id="SQLNuevoCITI_VA" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\NuevoCITI_VA.sql"/>
+		<Binary Id="SQLNuevoCITI_VC" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\NuevoCITI_VC.sql"/>
+	</Fragment>	
+	<!--ar04-master\GP2016\TIISELAM_ARG_sql-->
+	<Fragment>
+		<!-- Medios de Cobros Pago--> 
+		<Binary Id="CreateGrant600" SourceFile="$(var.LocArgSetup.ProjectDir)Grant.sql"/> 
+		<Binary Id="CreateGrant610" SourceFile="$(var.LocArgSetup.ProjectDir)Grant.sql"/> 
+	</Fragment>		
+
+</Wix>
