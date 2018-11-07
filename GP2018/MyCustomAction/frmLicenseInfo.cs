@@ -224,8 +224,12 @@ namespace MyCustomAction
             File.Move(@PATH + "\\GP Factura Digital v33\\ParametrosCfdi.xml", @PATH + "\\GP Factura Digital v33\\ParametrosCfdi_" + Convert.ToDateTime(DateTime.Now).ToString("yyyymmdd") + " .xml");
             File.Move(@PATH + "\\GP Factura Digital v33\\ParametrosCfdi_NEW.xml", @PATH + "\\GP Factura Digital v33\\ParametrosCfdi.xml");
             File.Delete(@PATH + "\\GP Factura Digital v33\\ParametrosCfdi_NEW.xml");
-           // File.Move(@PATH + "\\Data\\ParametrosCfdi.xml", @PATH + "\\Data\\ParametrosCfdi_" + Convert.ToDateTime(DateTime.Now).ToString("yyyymmdd") + " .xml");
-           // File.Copy(@PATH + "\\GP Factura Digital v33\\ParametrosCfdi.xml", @PATH + "\\Data\\ParametrosCfdi.xml");
+
+            if(System.IO.File.Exists(@PATH + "\\Data\\ParametrosCfdi.xml"))
+            {
+                File.Delete(@PATH + "\\Data\\ParametrosCfdi.xml");
+            }
+            File.Copy(@PATH + "\\GP Factura Digital v33\\ParametrosCfdi.xml", @PATH + "\\Data\\ParametrosCfdi.xml");
 
             /*companytags = "\t < compannia bd = " + "\"" + SQLDB + "\">\n";
             companytags = companytags + "\t\t<URLArchivoXSD>na</URLArchivoXSD>\n";
@@ -348,7 +352,7 @@ namespace MyCustomAction
 
             //MessageBox.Show(command, "Invalid info");
 
-            File.WriteAllText(@"C:\Instalador\Comando.txt", command);
+            File.WriteAllText(@PATH + "\\GP Factura Digital v33\\Reporte Fe\\Comando_FE" + SQLDB + ".txt", command);
 
             ExecuteCommand(command);
 
@@ -364,7 +368,7 @@ namespace MyCustomAction
 
             //MessageBox.Show(command, "Invalid info");
 
-            File.WriteAllText(@"C:\Instalador\Comando1.txt", command);
+            File.WriteAllText(@PATH + "\\GP Factura Digital v33\\Reporte Fe\\Comando_FE_EXP" + SQLDB + ".txt", command);
 
             ExecuteCommand(command);
             
