@@ -3,9 +3,9 @@
 	 xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
 	 xmlns:sql="http://schemas.microsoft.com/wix/SqlExtension">
 
-	<Product Id="6E38CD38-3415-4FC5-9620-3879DBC6B671" Name="Instalador LOCARG Compañia"
-           Language="1033" Version="7.2.0.0" Manufacturer="JCF" UpgradeCode="44281eba-a31e-4e51-92b8-ff8327561a96">
-		<Package Id="*" InstallerVersion="200" Manufacturer="JCF" Compressed="yes" />
+	<Product Id="FD1F4C74-28EC-4148-BF1A-32F776335C67" Name="GP ARG Instalador de Compañía"
+           Language="1033" Version="1.0.0.0" Manufacturer="TII" UpgradeCode="44281eba-a31e-4e51-92b8-ff8327561a96">
+		<Package Id="*" InstallerVersion="200" Manufacturer="TII" Compressed="yes" />
 		
 		<!--Product Id="*" Name="Win App" Language="1033" Version="2.0.0.0" Manufacturer="WinApp Software Inc." UpgradeCode="a9b1d837-9b09-491b-bd81-b794560745a4">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" /-->
@@ -14,7 +14,6 @@
 
 		<Media Id="1" Cabinet="WinApp.cab" EmbedCab="yes" />
 
-		
 		<Feature Id="InstalacionCompleta" Title="GP Factura Digital" Level="1" Description="Objetos sql y archivos de programa." Display="expand" ConfigurableDirectory="INSTALLDIR">
 			<Feature Id="DYNCNKS" Title="GP Localizacion ARG" Description="Archivos SQL, VISTAS, FUNCIONES, SP" Level="1">
 				<Feature Id="MedioCobroPago" Title="Medios de Cobro Pago" Description="Medios de Cobro Pago" Level="1">
@@ -84,10 +83,6 @@
 			<!--Custom Action='LicenseInfoCustomAction' After='InstallInitialize'>NOT Installed</Custom-->
 			<Custom Action='LicenseInfoCustomAction' After='InstallInitialize'></Custom>
 		</InstallExecuteSequence>
-		
-	
-	
-
 	</Product>
 
 	<Fragment>
@@ -133,12 +128,13 @@
 						</Component>
 						<Component Id="NuevoCITI" Guid="7B289C8E-6F5B-4A7B-A9A1-E78A89239723"  KeyPath="yes">
 							<sql:SqlDatabase Id="SqlRG385" User="SQLUser" Server="[SQLSERVER]" Database="[SQLDATABASE]" CreateOnInstall="no" DropOnUninstall="no" ContinueOnError="yes" >
-								<sql:SqlScript Id="SQLNuevoCITI_CA" BinaryKey="SQLNuevoCITI_CA" ExecuteOnInstall="yes" Sequence="385" ContinueOnError="no"/>
-								<sql:SqlScript Id="SQLNuevoCITI_CC" BinaryKey="SQLNuevoCITI_CC" ExecuteOnInstall="yes" Sequence="385" ContinueOnError="no"/>
-								<sql:SqlScript Id="SQLNuevoCITI_CE" BinaryKey="SQLNuevoCITI_CE" ExecuteOnInstall="yes" Sequence="385" ContinueOnError="no"/>
-								<sql:SqlScript Id="SQLNuevoCITI_CI" BinaryKey="SQLNuevoCITI_CI" ExecuteOnInstall="yes" Sequence="385" ContinueOnError="no"/>
-								<sql:SqlScript Id="SQLNuevoCITI_VA" BinaryKey="SQLNuevoCITI_VA" ExecuteOnInstall="yes" Sequence="385" ContinueOnError="no"/>
-								<sql:SqlScript Id="SQLNuevoCITI_VC" BinaryKey="SQLNuevoCITI_VC" ExecuteOnInstall="yes" Sequence="385" ContinueOnError="no"/>
+                <sql:SqlScript Id="SQLNuevoCITI_01" BinaryKey="SQLNuevoCITI_01" ExecuteOnInstall="yes" Sequence="385" ContinueOnError="no"/>
+                <sql:SqlScript Id="SQLNuevoCITI_CA" BinaryKey="SQLNuevoCITI_CA" ExecuteOnInstall="yes" Sequence="390" ContinueOnError="no"/>
+								<sql:SqlScript Id="SQLNuevoCITI_CC" BinaryKey="SQLNuevoCITI_CC" ExecuteOnInstall="yes" Sequence="395" ContinueOnError="no"/>
+								<sql:SqlScript Id="SQLNuevoCITI_CE" BinaryKey="SQLNuevoCITI_CE" ExecuteOnInstall="yes" Sequence="400" ContinueOnError="no"/>
+								<sql:SqlScript Id="SQLNuevoCITI_CI" BinaryKey="SQLNuevoCITI_CI" ExecuteOnInstall="yes" Sequence="405" ContinueOnError="no"/>
+								<sql:SqlScript Id="SQLNuevoCITI_VA" BinaryKey="SQLNuevoCITI_VA" ExecuteOnInstall="yes" Sequence="410" ContinueOnError="no"/>
+								<sql:SqlScript Id="SQLNuevoCITI_VC" BinaryKey="SQLNuevoCITI_VC" ExecuteOnInstall="yes" Sequence="415" ContinueOnError="no"/>
 							</sql:SqlDatabase>
 						</Component>
 					</Directory>
@@ -216,7 +212,7 @@
 									<sql:SqlScript Id="Createfunc500" BinaryKey="Createfunc500" ExecuteOnInstall="yes" Sequence="500" ContinueOnError="no"/>
 									<sql:SqlScript Id="Createfunc510" BinaryKey="Createfunc510" ExecuteOnInstall="yes" Sequence="510" ContinueOnError="no"/>
 									<sql:SqlScript Id="Createview520" BinaryKey="Createview520" ExecuteOnInstall="yes" Sequence="520" ContinueOnError="no"/>
-									<!--sql:SqlScript Id="Createview525" BinaryKey="Createview525" ExecuteOnInstall="yes" Sequence="525" ContinueOnError="no"/-->
+                  <sql:SqlScript Id="Createview525" BinaryKey="Createview525" ExecuteOnInstall="yes" Sequence="525" ContinueOnError="no"/>
 									<sql:SqlScript Id="Createrol530" BinaryKey="Createrol530" ExecuteOnInstall="yes" Sequence="530" ContinueOnError="no"/>
 									<sql:SqlScript Id="CreateGrant540" BinaryKey="CreateGrant540" ExecuteOnInstall="yes" Sequence="540" ContinueOnError="no"/>
 								</sql:SqlDatabase>
@@ -272,7 +268,7 @@
 		<Binary Id="Createtrig35" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\035_RegistraHoradeFacturaElectronica.trigger.sql"/>
 
 		<!--Atención: Varía de acuerdo a la VERSION GP-->
-		<Binary Id="Createview40" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\040_ObtieneConfiguracionCartasEmail.viewgp2013oAnt.sql"/>
+		<Binary Id="Createview40" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\040_ObtieneConfiguracionCartasEmail.viewGP2015.sql"/>
 
 		<Binary Id="Createfun50" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\050_ObtieneDireccionesCorreoClientes.function.sql"/>
 		<Binary Id="Createtable60" SourceFile="$(var.LocArgSetup.ProjectDir)mx01\Release\060_OPCIONALCreaMaestroDeCertificadosYFolios.table.sql"/>
@@ -319,7 +315,7 @@
 		<Binary Id="Createfunc500" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\10 - FNC GXPRFuncGetTax.sql"/>
 		<Binary Id="Createfunc510" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\20 - FNC GXPRFuncGetTaxItm.sql"/>
 		<Binary Id="Createview520" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\30 - VW GXPR_FC_ELECTRONICA.sql"/>
-		<!--Binary Id="Createview525" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\40 - VW GXPR_FC_ELECTRONICA_EXP.sql"/-->
+    <Binary Id="Createview525" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\40 - VW GXPR_FC_ELECTRONICA_EXP.sql"/>
 		<Binary Id="Createrol530" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\50 - ROL gpexp_facturaelectronica.sql"/>
 		<Binary Id="CreateGrant540" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\60 - GRNT GXPR_FC_ELECTRONICA.sql"/>
 		<Binary Id="CreateGrant550" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\70 - GRNT DYNAMICS.sql"/>
@@ -349,16 +345,16 @@
 		<!-- Percepciones -->
 		<Binary Id="SQL4100_COMPANY_1_Procs" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\4100_COMPANY_1_Procs.sql"/>
 		<!-- NUEVO CITI -->
-		<Binary Id="SQLNuevoCITI_CA" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\NuevoCITI_CA.sql"/>
-		<Binary Id="SQLNuevoCITI_CC" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\NuevoCITI_CC.sql"/>
-		<Binary Id="SQLNuevoCITI_CE" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\NuevoCITI_CE.sql"/>
-		<Binary Id="SQLNuevoCITI_CI" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\NuevoCITI_CI.sql"/>
-		<Binary Id="SQLNuevoCITI_VA" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\NuevoCITI_VA.sql"/>
-		<Binary Id="SQLNuevoCITI_VC" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\NuevoCITI_VC.sql"/>
+    <Binary Id="SQLNuevoCITI_01" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\01-fncESNUMERICO.sql"/>
+    <Binary Id="SQLNuevoCITI_CA" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\02-NuevoCITI_CA.sql"/>
+		<Binary Id="SQLNuevoCITI_CC" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\03-NuevoCITI_CC.sql"/>
+		<Binary Id="SQLNuevoCITI_CE" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\04-NuevoCITI_CE.sql"/>
+		<Binary Id="SQLNuevoCITI_CI" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\05-NuevoCITI_CI.sql"/>
+		<Binary Id="SQLNuevoCITI_VA" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\06-NuevoCITI_VA.sql"/>
+		<Binary Id="SQLNuevoCITI_VC" SourceFile="$(var.LocArgSetup.ProjectDir)ar03\Release\07-NuevoCITI_VC.sql"/>
 	</Fragment>	
-	<!--ar04-master\GP2016\TIISELAM_ARG_sql-->
 	<Fragment>
-		<!-- Medios de Cobros Pago--> 
+		<!-- Grants --> 
 		<Binary Id="CreateGrant600" SourceFile="$(var.LocArgSetup.ProjectDir)Grant.sql"/> 
 		<Binary Id="CreateGrant610" SourceFile="$(var.LocArgSetup.ProjectDir)Grant.sql"/> 
 	</Fragment>		
