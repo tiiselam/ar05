@@ -1,2 +1,2 @@
-C:\Users\Admin\Documents\GitHub\ar05\GP2018\WinAppSetup\bin\Debug\LocalizacionARG.msi
-C:\Users\Admin\Documents\GitHub\ar05\GP2018\WinAppSetup\bin\Debug\LocalizacionARG.wixpdb
+C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\WinAppSetup\bin\Debug\LocalizacionARG.msi
+C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\WinAppSetup\bin\Debug\LocalizacionARG.wixpdb
