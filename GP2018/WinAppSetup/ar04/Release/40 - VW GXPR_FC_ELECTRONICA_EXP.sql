@@ -1,21 +1,15 @@
-ï»¿GO
-/****** Object:  View [dbo].[GXPR_FC_ELECTRONICA_EXP]    Script Date: 16/08/2018 11:56:28 ******/
 SET ANSI_NULLS ON
 GO
 
-if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[GXPR_FC_ELECTRONICA_EXP]') and OBJECTPROPERTY(id, N'IsView') = 1) 
-drop view [dbo].[GXPR_FC_ELECTRONICA_EXP]
-
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[GXPR_FC_ELECTRONICA_EXP]') and OBJECTPROPERTY(id, N'IsView') = 1)  drop view [dbo].[GXPR_FC_ELECTRONICA_EXP] 
 GO
-
-
 
 SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE VIEW [dbo].[GXPR_FC_ELECTRONICA_EXP]
 AS
-SELECT        /*Datos CompaÃ±ia Emite*/ rtrim(CMP.CMPNYNAM) CMPNYNAM/*OK*/ , rtrim(concat(rtrim(CMP.ADDRESS1), rtrim(CMP.ADDRESS2), rtrim(CMP.ADDRESS3))) 
+SELECT        /*Datos Compañia Emite*/ rtrim(CMP.CMPNYNAM) CMPNYNAM/*OK*/ , rtrim(concat(rtrim(CMP.ADDRESS1), rtrim(CMP.ADDRESS2), rtrim(CMP.ADDRESS3))) 
                          CMPADRESS/*OK*/,RTRIM(CONCAT(rtrim(CMP.CITY), ' - ', rtrim(CMP.STATE),' - ',RTRIM(CMPCNTRY)))  CMPADRESS_1 , 'file:' + ARC.fileName FileName/*OK*/ , Substring(TAXREGTN, 1, 2) + '-' + Substring(TAXREGTN, 3, 8) + '-' + Substring(TAXREGTN, 11, 1) CUIT/*OK Falta separar*/ , Substring(INFO.INETINFO, 
                          charindex('IIBB=', INFO.INETINFO, 1) + 5, 11) IIBB/* OK*/ , Substring(INFO.INETINFO, charindex('FECHA_INICIO=', INFO.INETINFO, 1) + 13, 10) FECHA_INICIO/*OK*/ , Substring(INFO.INETINFO, 
                          charindex('COND_IVA=', INFO.INETINFO, 1) + 9, 50) COND_IVA/*NOK*/ , rtrim(FEI_COD) FEI_COD/*OK*/ , rtrim(FEI_LETRA1) FEI_LETRA1/*OK*/ , rtrim(FEI_PDV) FEI_PDV/*OK*/ , FEI_NRO/*NOK*/ , FEI_CAE/*NOK*/ , 
@@ -50,7 +44,7 @@ dynamics.dbo.AWLI40320 pa on pa.Cuit_pais = rm.cuit_pais
 /*- SOP10105 IMP ON DET.SOPTYPE = IMP.SOPTYPE AND DET.SOPNUMBE = IMP.SOPNUMBE AND DET.LNITMSEQ = IMP.LNITMSEQ AND IMP.TAXDTLID LIKE '%' + rtrim('V-IV-') + '%'*/ WHERE CMP.INTERID = DB_NAME() 
                          AND INFO.ADRSCODE = 'FC_ELECTRONICA' AND INFO.MASTER_TYPE = 'CMP'
 UNION ALL
-SELECT        /*Datos CompaÃ±ia Emite*/ rtrim(CMP.CMPNYNAM) CMPNYNAM/*OK*/ , rtrim(concat(rtrim(CMP.ADDRESS1), rtrim(CMP.ADDRESS2), rtrim(CMP.ADDRESS3))) 
+SELECT        /*Datos Compañia Emite*/ rtrim(CMP.CMPNYNAM) CMPNYNAM/*OK*/ , rtrim(concat(rtrim(CMP.ADDRESS1), rtrim(CMP.ADDRESS2), rtrim(CMP.ADDRESS3))) 
                          CMPADRESS/*OK*/,RTRIM(CONCAT(rtrim(CMP.CITY), ' - ', rtrim(CMP.STATE),' - ',RTRIM(CMPCNTRY))) , 'file:' + ARC.fileName FileName/*OK*/ , Substring(TAXREGTN, 1, 2) + '-' + Substring(TAXREGTN, 3, 8) + '-' + Substring(TAXREGTN, 11, 1) CUIT/*OK Falta separar*/ , Substring(INFO.INETINFO, 
                          charindex('IIBB=', INFO.INETINFO, 1) + 5, 11) IIBB/* OK*/ , Substring(INFO.INETINFO, charindex('FECHA_INICIO=', INFO.INETINFO, 1) + 13, 10) FECHA_INICIO/*OK*/ , Substring(INFO.INETINFO, 
                          charindex('COND_IVA=', INFO.INETINFO, 1) + 9, 50) COND_IVA/*NOK*/ , rtrim(FEI_COD) FEI_COD/*OK*/ , rtrim(FEI_LETRA1) FEI_LETRA1/*OK*/ , rtrim(FEI_PDV) FEI_PDV/*OK*/ , FEI_NRO/*NOK*/ , FEI_CAE/*NOK*/ , 
@@ -256,4 +250,3 @@ GO
 
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'GXPR_FC_ELECTRONICA_EXP'
 GO
-

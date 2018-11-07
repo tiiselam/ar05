@@ -216,7 +216,7 @@
 									<sql:SqlScript Id="Createfunc500" BinaryKey="Createfunc500" ExecuteOnInstall="yes" Sequence="500" ContinueOnError="no"/>
 									<sql:SqlScript Id="Createfunc510" BinaryKey="Createfunc510" ExecuteOnInstall="yes" Sequence="510" ContinueOnError="no"/>
 									<sql:SqlScript Id="Createview520" BinaryKey="Createview520" ExecuteOnInstall="yes" Sequence="520" ContinueOnError="no"/>
-									<!--sql:SqlScript Id="Createview525" BinaryKey="Createview525" ExecuteOnInstall="yes" Sequence="525" ContinueOnError="no"/-->
+									<sql:SqlScript Id="Createview525" BinaryKey="Createview525" ExecuteOnInstall="yes" Sequence="525" ContinueOnError="no"/>
 									<sql:SqlScript Id="Createrol530" BinaryKey="Createrol530" ExecuteOnInstall="yes" Sequence="530" ContinueOnError="no"/>
 									<sql:SqlScript Id="CreateGrant540" BinaryKey="CreateGrant540" ExecuteOnInstall="yes" Sequence="540" ContinueOnError="no"/>
 								</sql:SqlDatabase>
@@ -319,7 +319,7 @@
 		<Binary Id="Createfunc500" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\10 - FNC GXPRFuncGetTax.sql"/>
 		<Binary Id="Createfunc510" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\20 - FNC GXPRFuncGetTaxItm.sql"/>
 		<Binary Id="Createview520" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\30 - VW GXPR_FC_ELECTRONICA.sql"/>
-		<!--Binary Id="Createview525" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\40 - VW GXPR_FC_ELECTRONICA_EXP.sql"/-->
+		<Binary Id="Createview525" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\40 - VW GXPR_FC_ELECTRONICA_EXP.sql"/>
 		<Binary Id="Createrol530" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\50 - ROL gpexp_facturaelectronica.sql"/>
 		<Binary Id="CreateGrant540" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\60 - GRNT GXPR_FC_ELECTRONICA.sql"/>
 		<Binary Id="CreateGrant550" SourceFile="$(var.LocArgSetup.ProjectDir)ar04\Release\70 - GRNT DYNAMICS.sql"/>
