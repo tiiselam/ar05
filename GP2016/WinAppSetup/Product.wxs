@@ -2,9 +2,9 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
 	 xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
 	
-		<Product Id="6E38CD38-3415-4FC5-9620-3879DBC6B670" Name="Localización ARG"
-           Language="1033" Version="7.2.0.0" Manufacturer="JCF" UpgradeCode="44281eba-a31e-4e51-92b8-ff8327561a96">
-		<Package Id="*" InstallerVersion="200" Manufacturer="JCF" Compressed="yes" />
+		<Product Id="2897A795-8B6E-49BA-BFC7-CF53AD064C57" Name="GP2016 ARG Instalador Localización"
+           Language="1033" Version="16.1.0.0" Manufacturer="TII" UpgradeCode="44281eba-a31e-4e51-92b8-ff8327561a96">
+		<Package Id="*" InstallerVersion="200" Manufacturer="TII" Compressed="yes" />
 		
 		<!--Product Id="*" Name="Win App" Language="1033" Version="2.0.0.0" Manufacturer="WinApp Software Inc." UpgradeCode="a9b1d837-9b09-491b-bd81-b794560745a4">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" /-->
@@ -13,7 +13,7 @@
 
 		<Media Id="1" Cabinet="WinApp.cab" EmbedCab="yes" />
 		
-		<Feature Id="InstalacionCompleta" Title="GP Factura Digital" Level="1" Description="Objetos sql y archivos de programa." Display="expand" ConfigurableDirectory="INSTALLDIR">
+		<Feature Id="InstalacionCompleta" Title="GP Generador de Factura PDF" Level="1" Description="Objetos sql y archivos de programa." Display="expand" ConfigurableDirectory="INSTALLDIR">
 			<Feature Id="DYNCNKS" Title="Dynamics CNKS" Description="Archivos del programa." Level="1">
 				<Feature Id="MedioCobroPago" Title="Medios de Cobro Pago" Description="Medios de Cobro Pago" Level="1">
 					<ComponentRef Id="MedioCobroPago" />

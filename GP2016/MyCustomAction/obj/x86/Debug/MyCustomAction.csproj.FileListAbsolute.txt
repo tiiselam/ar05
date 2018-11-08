@@ -55,7 +55,6 @@ C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2016\MyCustomAction\bin\Debug\My
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2016\MyCustomAction\bin\Debug\MyCustomAction.pdb
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2016\MyCustomAction\bin\Debug\Microsoft.Deployment.WindowsInstaller.dll
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2016\MyCustomAction\bin\Debug\Microsoft.Deployment.WindowsInstaller.xml
-C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.csprojAssemblyReference.cache
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.frmLicenseInfo.resources
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.Properties.Resources.resources
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.csproj.GenerateResource.cache
@@ -63,3 +62,4 @@ C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2016\MyCustomAction\obj\x86\Debu
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.csproj.CopyComplete
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.dll
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.pdb
+C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.csprojAssemblyReference.cache

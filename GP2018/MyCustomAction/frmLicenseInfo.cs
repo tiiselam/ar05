@@ -394,7 +394,7 @@ namespace MyCustomAction
             string result = proc.StandardOutput.ReadToEnd();
             //Muestra en pantalla la salida del Comando
             Console.WriteLine(result);
-            File.AppendAllText(@"C:\Instalador\resultados", result);
+            //File.AppendAllText(@"C:\Instalador\resultados", result);
         }
 
         private void label5_Click(object sender, EventArgs e)

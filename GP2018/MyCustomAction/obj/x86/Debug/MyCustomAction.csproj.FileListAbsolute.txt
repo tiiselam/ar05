@@ -50,3 +50,15 @@ C:\Users\Admin\Documents\GitHub\ar05\GP2016\MyCustomAction\obj\x86\Debug\MyCusto
 C:\Users\Admin\Documents\GitHub\ar05\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.csproj.CopyComplete
 C:\Users\Admin\Documents\GitHub\ar05\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.dll
 C:\Users\Admin\Documents\GitHub\ar05\GP2016\MyCustomAction\obj\x86\Debug\MyCustomAction.pdb
+C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\MyCustomAction\bin\Debug\MyCustomAction.dll
+C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\MyCustomAction\bin\Debug\MyCustomAction.CA.dll
+C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\MyCustomAction\bin\Debug\MyCustomAction.pdb
+C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\MyCustomAction\bin\Debug\Microsoft.Deployment.WindowsInstaller.dll
+C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\MyCustomAction\bin\Debug\Microsoft.Deployment.WindowsInstaller.xml
+C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\MyCustomAction\obj\x86\Debug\MyCustomAction.frmLicenseInfo.resources
+C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\MyCustomAction\obj\x86\Debug\MyCustomAction.Properties.Resources.resources
+C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\MyCustomAction\obj\x86\Debug\MyCustomAction.csproj.GenerateResource.cache
+C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\MyCustomAction\obj\x86\Debug\MyCustomAction.csproj.CoreCompileInputs.cache
+C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\MyCustomAction\obj\x86\Debug\MyCustomAction.csproj.CopyComplete
+C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\MyCustomAction\obj\x86\Debug\MyCustomAction.dll
+C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\MyCustomAction\obj\x86\Debug\MyCustomAction.pdb
