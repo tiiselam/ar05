@@ -1,5 +1,3 @@
-﻿GO
-/****** Object:  View [dbo].[GXPR_FC_ELECTRONICA_EXP]    Script Date: 16/08/2018 11:56:28 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -84,4 +82,3 @@ SELECT        /*Datos Compañia Emite*/ rtrim(CMP.CMPNYNAM) CMPNYNAM/*OK*/ , rtr
 dynamics.dbo.AWLI40320 pa on pa.Cuit_pais = rm.cuit_pais
 WHERE        CMP.INTERID = DB_NAME() AND INFO.ADRSCODE = 'FC_ELECTRONICA' AND INFO.MASTER_TYPE = 'CMP'
 GO
-

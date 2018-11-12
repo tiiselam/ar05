@@ -25,7 +25,7 @@ C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\WinAppSetup\ar03\Release\CP
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\WinAppSetup\mx01\Release\ParametrosCfdi.xml
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\WinAppSetup\ar03\Release\XPR.cnk
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\WinAppSetup\mx01\Release\QRCodeLib.dll
-C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\WinAppSetup\ar03\Release\Registrar FEdll.bat
+C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\WinAppSetup\ar03\Registrar FEdll.bat
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\LocArgSetupCompaniaSQL\deploy_report_FE.rss
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\WinAppSetup\mx01\Release\Reporteador.dll
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\WinAppSetup\mx01\Release\Reporteador.XmlSerializers.dll

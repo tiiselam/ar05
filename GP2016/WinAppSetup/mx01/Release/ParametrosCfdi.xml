@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <listaParametros>
-  <servidor>TP-GP\GPTP</servidor>
+  <servidor>SERVIDOR\INSTANCIASQL</servidor>
   <seguridadIntegrada>1</seguridadIntegrada>
   <usuariosql>sa</usuariosql>
   <passwordsql>-</passwordsql>
-  <compannia bd="MEX10">
-    <URLArchivoXSD>C:\GPUsuario\GPCfdi\feGettyMex\fePlantillas\cfdv33.xsd</URLArchivoXSD>
-    <URLArchivoPagosXSD>C:\GPUsuario\GPCfdi\feGettyMex\fePlantillas\Pagos10.xsd</URLArchivoPagosXSD>
-    <URLArchivoXSLT>C:\GPUsuario\GPCfdi\feGettyMex\fePlantillas\cadenaoriginal_3_3.xslt</URLArchivoXSLT>
-    <URLConsulta>https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx</URLConsulta>
+  <compannia bd="COMPAÑIA">
+    <URLArchivoXSD>na</URLArchivoXSD>
+    <URLArchivoPagosXSD>na</URLArchivoPagosXSD>
+    <URLArchivoXSLT>na</URLArchivoXSLT>
+    <URLConsulta>na</URLConsulta>
     <PAC>
-      <urlWebService>https://pruebas33.interfactura.com/TimbreServicios/TimbreServicios.asmx</urlWebService>
+      <urlWebService>na</urlWebService>
     </PAC>
-    <reporteador>CRYSTAL</reporteador>
+    <reporteador>SSRS</reporteador>
     <reporteExtensiones>
-      <PrefijoFacturaExporta>FV E</PrefijoFacturaExporta>
+      <PrefijoFacturaExporta>E</PrefijoFacturaExporta>
       <FacturaExporta>_exp.rpt</FacturaExporta>
       <Factura>.rpt</Factura>
       <Cobro>.COB.rpt</Cobro>
       <Traslado>.REM.rpt</Traslado>
     </reporteExtensiones>
     <rutaReporteCrystal tipo="default">
-      <Ruta>\\10.1.1.22\Integraciones Getty\Factura Mexico\GMOPE_FACTURA_ELECT</Ruta>
+      <Ruta>NA</Ruta>
       <Margenes>
         <bottomMargin>0</bottomMargin>
         <topMargin>0</topMargin>
@@ -64,11 +64,11 @@
     <emailSetup>
       <smtp>smtp.gmail.com</smtp>
       <puerto>587</puerto>
-      <cuenta>billing@gettyimageslatam.com</cuenta>
-      <usuario>billing@gettyimageslatam.com</usuario>
+      <cuenta>NA</cuenta>
+      <usuario>NA</usuario>
       <clave></clave>
       <ssl>true</ssl>
-      <replyto>billing@gettyimageslatam.com</replyto>
+      <replyto>NA</replyto>
       <carta>FACTURA_ELECTRONICA</carta>
       <adjuntoEmite>zip</adjuntoEmite>
       <adjuntoImprime>pdf</adjuntoImprime>

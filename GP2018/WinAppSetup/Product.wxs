@@ -236,7 +236,7 @@
 							<RemoveFile Id="ACA_WSFE" Name="ACA_WSFE.dll" On="both"/>
 							<File Id="FEEXP" Source="$(sys.CURRENTDIR)ar03\Release\FEEXP.dll"/>
 							<RemoveFile Id="FEEXP" Name="FEEXP.dll" On="both"/>
-							<File Id="RegistrarDLL" Source="$(sys.CURRENTDIR)ar03\Release\Registrar FEdll.bat"/>
+							<File Id="RegistrarDLL" Source="$(sys.CURRENTDIR)ar03\Registrar FEdll.bat"/>
 							<RemoveFile Id="RegistrarD" Name="Registrar FEdll.bat" On="both"/>
 						</Component>	
 					</Directory>

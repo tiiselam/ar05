@@ -1,5 +1,3 @@
-<<<<<<< HEAD:ARG_GP2016/RG3585_NUEVO_CITI/sql/05-NuevoCITI_CI.sql
-=======
 
 GO
 
@@ -17,13 +15,6 @@ drop procedure [dbo].[NuevoCITI_CI]
 go
 
 
-
-
-
-
-
-
->>>>>>> f0eb882f471452d1f27e630d73218029888cb36e:ARG_GP2016/RG3585_NUEVO_CITI/sql/NuevoCITI_CI.sql
 /****** Object:  Stored Procedure dbo.NuevoCITI_CI    Script Date: 14/6/2015 12:34:37 PM ******/
 CREATE PROCEDURE [dbo].[NuevoCITI_CI] @PERIODO CHAR(6), @REPORTE CHAR(15), @NOGRAVADO tinyint
 AS

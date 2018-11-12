@@ -110,14 +110,14 @@ namespace MyCustomAction
                     fileWrite.WriteLine("<servidor>" + SERVER + "</servidor>");
 
                 }
-                else if (line.Contains("<compannia bd=" + "\"" + SQLDB + "\">"))
+                else if (line.Contains("<compannia bd=" + "\"" + SQLDB.ToUpper() + "\">"))
                 {
                    ExisteCompania = true;
                    fileWrite.WriteLine(line);
                 }
                 else if (line.Contains("</listaParametros>") && !ExisteCompania)
                 {
-                    fileWrite.WriteLine("\t<compannia bd=" + "\"" + SQLDB + "\">");
+                    fileWrite.WriteLine("\t<compannia bd=" + "\"" + SQLDB.ToUpper() + "\">");
                     fileWrite.WriteLine("\t\t<URLArchivoXSD>na</URLArchivoXSD>");
                     fileWrite.WriteLine("\t\t<URLArchivoPagosXSD>na</URLArchivoPagosXSD>");
                     fileWrite.WriteLine("\t\t<URLArchivoXSLT>na</URLArchivoXSLT>");
@@ -130,7 +130,7 @@ namespace MyCustomAction
                     fileWrite.WriteLine("\t\t<reporteador>SSRS</reporteador>");
 
                     fileWrite.WriteLine("\t\t<reporteExtensiones>");
-                    fileWrite.WriteLine("\t\t\t<PrefijoFacturaExporta>FV E</PrefijoFacturaExporta >");
+                    fileWrite.WriteLine("\t\t\t<PrefijoFacturaExporta>E</PrefijoFacturaExporta >");
                     fileWrite.WriteLine("\t\t\t<FacturaExporta>Gral_exp</FacturaExporta>");
                     fileWrite.WriteLine("\t\t\t<Factura>Gral</Factura>");
                     fileWrite.WriteLine("\t\t\t<Cobro>.rdl</Cobro>");
@@ -169,7 +169,7 @@ namespace MyCustomAction
 
 
                     fileWrite.WriteLine("\t\t<ReporteSSRS tipo = \"default\">");
-                    fileWrite.WriteLine("\t\t\t<Ruta>/" + SQLDB + "/FACTURA/FE_Factura_</Ruta>");
+                    fileWrite.WriteLine("\t\t\t<Ruta>/" + SQLDB.ToUpper() + "/FACTURA/FE_Factura_</Ruta>");
                     fileWrite.WriteLine("\t\t\t<SSRSServer>" + txtName.Text + "</SSRSServer>");
                     // fileWrite.WriteLine("\t\t\t<SSRSServer> http://" +  Servidor.Substring(1,Servidor. + "/ReportServer_" + Servidor.Substring(1,4) + "</SSRSServer>");
                     fileWrite.WriteLine("\t\t\t<Parametro>");

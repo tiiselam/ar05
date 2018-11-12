@@ -1,5 +1,3 @@
-<<<<<<< HEAD:ARG_GP2016/RG3585_NUEVO_CITI/sql/07-NuevoCITI_VC.sql
-=======
 
 GO
 
@@ -21,7 +19,6 @@ go
 
 
 
->>>>>>> f0eb882f471452d1f27e630d73218029888cb36e:ARG_GP2016/RG3585_NUEVO_CITI/sql/NuevoCITI_VC.sql
 /****** Object:  Stored Procedure dbo.NuevoCITI_VC    Script Date: 14/6/2015 12:34:37 PM ******/
 CREATE PROCEDURE [dbo].[NuevoCITI_VC] @PERIODO CHAR(6), @REPORTE CHAR(15)
 AS
