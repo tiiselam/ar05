@@ -1,5 +1,3 @@
-<<<<<<< HEAD:ARG_GP2016/RG3585_NUEVO_CITI/sql/04-NuevoCITI_CE.sql
-=======
 GO
 
 /****** Object:  StoredProcedure [dbo].[NuevoCITI_CE]    Script Date: 21/08/2018 14:57:29 ******/
@@ -16,7 +14,6 @@ go
 
 
 
->>>>>>> f0eb882f471452d1f27e630d73218029888cb36e:ARG_GP2016/RG3585_NUEVO_CITI/sql/NuevoCITI_CE.sql
 /****** Object:  Stored Procedure dbo.NuevoCITI_CE    Script Date: 14/6/2015 12:34:37 PM ******/
 
 CREATE PROCEDURE [dbo].[NuevoCITI_CE] @PERIODO CHAR(6), @REPORTE CHAR(15), @NOGRAVADO tinyint

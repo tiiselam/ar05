@@ -1,2 +1,2 @@
-C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\WinAppSetup\bin\Debug\LocalizacionARG.msi
-C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\WinAppSetup\bin\Debug\LocalizacionARG.wixpdb
+C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\WinAppSetup\bin\Debug\LocARGv100GP18.00.0400.msi
+C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\WinAppSetup\bin\Debug\LocARGv100GP18.00.0400.wixpdb

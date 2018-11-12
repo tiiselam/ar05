@@ -1,3 +1,6 @@
+IF OBJECT_ID ('dbo.fncESNUMERICO') IS NOT NULL
+   DROP FUNCTION dbo.fncESNUMERICO
+GO
 /****** Object:  User Defined Function dbo.fncESNUMERICO    Script Date: 14/6/2015 12:35:09 PM ******/
 CREATE FUNCTION [dbo].[fncESNUMERICO] (	@DATO								VARCHAR(30)			
 )
