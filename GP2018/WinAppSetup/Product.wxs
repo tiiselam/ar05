@@ -2,8 +2,8 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
 	 xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
 	
-		<Product Id="DD855DEF-2E96-43B8-9A59-D83BB44BB70A" Name="GP2018 ARG Instalador Localización"
-           Language="1033" Version="18.1.0.0" Manufacturer="TII" UpgradeCode="44281eba-a31e-4e51-92b8-ff8327561a96">
+		<Product Id="408E26AB-43DA-47D8-9FD2-C024D994182B" Name="GP2018 ARG Instalador Localización"
+           Language="1033" Version="18.1.1.1" Manufacturer="TII" UpgradeCode="44281eba-a31e-4e51-92b8-ff8327561a96">
 		<Package Id="*" InstallerVersion="200" Manufacturer="TII" Compressed="yes" />
 		
 		<!--Product Id="*" Name="Win App" Language="1033" Version="2.0.0.0" Manufacturer="WinApp Software Inc." UpgradeCode="a9b1d837-9b09-491b-bd81-b794560745a4">
@@ -35,9 +35,9 @@
 				<Feature Id="DocumentosLegales" Title="Documentos Legales" Description="Documentos Legales" Level="1">	
 					<ComponentRef Id="DocumentosLegales" />
 				</Feature>		
-				<!--<Feature Id="ImpresionCheques" Title="Impresión de Cheques" Description="Impresión de cheques" Level="1">	
+				<Feature Id="ImpresionCheques" Title="Impresión de Cheques" Description="Impresión de cheques" Level="1">	
 					<ComponentRef Id="ImpresionCheques" />
-				</Feature>-->				
+				</Feature>				
 				<Feature Id="Percepciones" Title="Percepciones" Description="Percepciones" Level="1">							
 					<ComponentRef Id="Percepciones" />
 				</Feature>				
@@ -161,10 +161,6 @@
 							<File Id="DocumentosLegales" Source="$(sys.CURRENTDIR)ar03\Release\XDL.CNK"/>
 							<RemoveFile Id="RVDocumentosLegales" Name="XDL.CNK" On="uninstall"/>
 						</Component>	
-						<!--<Component Id="ImpresionCheques" Guid="7B289C8E-6F5B-4A7B-A9A1-E78A89239721">
-							<File Id="ImpresionCheques" Source="$(sys.CURRENTDIR)ar03\Release\ChkPrnt.cnk"/>
-							<RemoveFile Id="RVImpresionCheques" Name="ChkPrnt.cnk" On="uninstall"/>
-						</Component>-->	
 						<Component Id="Percepciones" Guid="7B289C8E-6F5B-4A7B-A9A1-E78A89239722">
 							<File Id="Percepciones" Source="$(sys.CURRENTDIR)ar03\Release\XPR.cnk"/>
 							<RemoveFile Id="RVPercepciones" Name="XPR.cnk" On="uninstall"/>
@@ -173,6 +169,10 @@
 							<File Id="NuevoCiti" Source="$(sys.CURRENTDIR)ar03\Release\CPVT_01.cnk"/>
 							<RemoveFile Id="RVNuevoCiti" Name="CPVT_01.cnk" On="uninstall"/>
 						</Component>
+            <Component Id="ImpresionCheques" Guid="DAECFAD7-3C58-4F11-9808-FBAE71CC94B7">
+              <File Id="ImpresionCheques" Source="$(sys.CURRENTDIR)ar03\Release\ChkPrnt.cnk"/>
+              <RemoveFile Id="RVImpresionCheques" Name="ChkPrnt.cnk" On="uninstall"/>
+            </Component>
 
 					<Directory Id="GeneradorPDF" Name="GP Factura Digital v33">
 						<Component Id="EjecutableEncriptador" Guid="86f24e6c-389e-464b-b2ad-790efba8457a">
