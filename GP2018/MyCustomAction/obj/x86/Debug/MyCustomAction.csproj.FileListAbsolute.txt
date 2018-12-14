@@ -62,3 +62,4 @@ C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\MyCustomAction\obj\x86\Debu
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\MyCustomAction\obj\x86\Debug\MyCustomAction.csproj.CopyComplete
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\MyCustomAction\obj\x86\Debug\MyCustomAction.dll
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\MyCustomAction\obj\x86\Debug\MyCustomAction.pdb
+C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\MyCustomAction\obj\x86\Debug\MyCustomAction.csprojAssemblyReference.cache
