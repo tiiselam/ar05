@@ -15,6 +15,7 @@ C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\WinAppSetup\ar03\Release\FE
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\WinAppSetup\ar03\Release\FEEXP.dll
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\WinAppSetup\ar03\Release\TaxList.cnk
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\WinAppSetup\ar03\Release\MCPRM.cnk
+C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\WinAppSetup\ar03\Release\ChkPrnt.cnk
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\LocArgSetupCompaniaSQL\bin\Debug\LocArgSetupCompaniaSQL.msi
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\WinAppSetup\mx01\Release\MaquinaDeEstados.dll
 C:\jcTii\Desarrollo\ARG_InstaladorLocArg\ar05\GP2018\WinAppSetup\mx01\Release\Microsoft.ReportViewer.Common.dll

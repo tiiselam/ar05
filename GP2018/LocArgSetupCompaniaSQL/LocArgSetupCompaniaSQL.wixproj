@@ -6,7 +6,7 @@
     <ProductVersion>3.10</ProductVersion>
     <ProjectGuid>99866d4b-dacf-45b6-b8ed-cb37a56f147d</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>LocArgSetupCompaniaSQL</OutputName>
+    <OutputName>LocArgSetupCiaSQLv111.GP18.00.0400</OutputName>
     <OutputType>Package</OutputType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
